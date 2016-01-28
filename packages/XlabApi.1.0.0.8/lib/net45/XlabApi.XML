@@ -1,0 +1,928 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XlabApi</name>
+    </assembly>
+    <members>
+        <member name="T:XlabApi.Devdiv.ApplicationInfo">
+            <summary>
+            Represents the detailed information of an Xlab application/extension.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.ApplicationInfo.ApplicationId">
+            <summary>
+            The ID of the application. e.g. VS2013
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.ApplicationInfo.DisplayName">
+            <summary>
+            The display name of the application
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.ApplicationInfo.Branch">
+            <summary>
+            The branch of the application. e.g. Main
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.ApplicationInfo.Build">
+            <summary>
+            The build of the application. e.g. 20912.00
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.ApplicationInfo.SKU">
+            <summary>
+            The SKU of the application. e.g. Ultimate
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.ApplicationInfo.Language">
+            <summary>
+            The language of the appliaction. e.g. ENU
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.ApplicationInfo.Options">
+            <summary>
+            The additional options used when install the application. e.g. /Full
+            </summary>
+        </member>
+        <member name="T:XlabApi.Devdiv.CreateVmRequest">
+            <summary>
+            Specifies the detailed settings for a VM creation request.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.CreateVmRequest.ImageId">
+            <summary>
+            Specifies the ID of the virtual machine base image.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.CreateVmRequest.VmNamePrefix">
+            <summary>
+            Specifies the VM name prefix. XLab will append random digits to the VM name to ensure 
+            that the new VM name is unique.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.CreateVmRequest.VMSize">
+            <summary>
+            Specifies the size of the virtual machine.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.CreateVmRequest.Description">
+            <summary>
+            Specifies the description of the virtual machine.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.CreateVmRequest.RunExtensions">
+            <summary>
+            Specifies the extensions to run after VM deployed.
+            </summary>
+        </member>
+        <member name="T:XlabApi.Devdiv.ExtensionInput">
+            <summary>
+            Specifies the xlab application/extension to run.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.ExtensionInput.ID">
+            <summary>
+            The ID of the extension
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.ExtensionInput.Parameters">
+            <summary>
+            The parameters of the extension. The key is the name of the parameter, the value is the 
+            value of the parameter.
+            </summary>
+        </member>
+        <member name="T:XlabApi.Devdiv.Image">
+            <summary>
+            Contains the detailed information of a Xlab image (Vhd).
+            </summary>
+        </member>
+        <member name="M:XlabApi.Devdiv.Image.CreateVM(System.String,XlabApi.Devdiv.VMSize,System.String,System.Collections.Generic.IEnumerable{XlabApi.Devdiv.ExtensionInput},System.Boolean,System.Int32,System.Action{XlabApi.Devdiv.RequestStatus})">
+            <summary>
+            Creates specified number of identical VMs in Xlab using this image.
+            Notes: 
+             - It takes 20+ mins for xlab to create a new VM. 
+            </summary>
+            <param name="vmNamePrefix">Specifies the VM name prefix. XLab will append random digits to the VM name prefix to ensure the new VM name is unique. Cannot be null or empty string.</param>
+            <param name="size">Specifies the size of the virtual machine.</param>
+            <param name="description">Specifies a note to annotate the VMs. Can be null or empty.</param>
+            <param name="runExtensions">Specifies the extensions to run after VM deployed (can be null if no extensions are needed).</param>
+            <param name="waitForCompletion">
+            If true, method will block until the operation has been completed.
+            Else method will return immediately after initiating the operation.
+            </param>
+            <param name="waitTimeMilliSeconds">
+            The number of milliseconds to wait. Use Timeout.Infinite (-1) to wait indefinitely. 
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <param name="onProgressUpdated">
+            Receives periodic updates on the ongoing operation. Can be null.
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <returns>
+            Returns the newly create VM instance, if the 'waitForCompletion' parameter was set to true.
+            Returns null, if the the 'waitForCompletion' parameter was set to false.
+            </returns>
+            <returns>A collection of VM instances created. If the collection count is less than the number of specified VMs, then it indicates that some VMs could not be created successfully.</returns>
+            <exception cref="T:System.TimeoutException">Thrown if the specified timeout period elapses before operation completes.</exception>
+        </member>
+        <member name="P:XlabApi.Devdiv.Image.ID">
+            <summary>
+            The ID of the image.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.Image.ConfigurationId">
+            <summary>
+            The configuration ID of the image. Usually daily images built 
+            from the same VS branch will have the same configuration ID.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.Image.Description">
+            <summary>
+            The description of the image.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.Image.DisplayName">
+            <summary>
+            The display name of the image.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.Image.Note">
+            <summary>
+            The custom note of the image.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.Image.OperatingSystemInfo">
+            <summary>
+            The detailed operating system information of the image.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.Image.InstalledApplications">
+            <summary>
+            The detailed information of installed appliations.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.Image.CreationTime">
+            <summary>
+            Represents the creation time of the image.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.Image.VhdPath">
+            <summary>
+            Represents the Vhd path of the image.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.Image.Category">
+            <summary>
+            The ImageCategory of this image ("Seed", "Stable", "DailyBuild", "Dogfood" etc).
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.Image.Lab">
+            <summary>
+            The Xlab instance that this Image belongs to. 
+            </summary>
+        </member>
+        <member name="T:XlabApi.Devdiv.ImageCategory">
+            <summary>
+            The category describing an Xlab image ("Clean OS", "Daily Build", "Dogfood" etc).
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.ImageCategory.Unknown">
+            <summary>
+            Unknown Image category
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.ImageCategory.Seed">
+            <summary>
+            Images with clean OS
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.ImageCategory.Stable">
+            <summary>
+            Images with released products
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.ImageCategory.Dogfood">
+            <summary>
+            Images with dogfood products
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.ImageCategory.DailyBuild">
+            <summary>
+            Images with daily lab builds
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.ImageCategory.Threshold">
+            <summary>
+            Images with Windows Threshold builds
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.ImageCategory.Dev">
+            <summary>
+            Images with dev-enlistments
+            </summary>
+        </member>
+        <member name="T:XlabApi.Devdiv.OperatingSystemInfo">
+            <summary>
+            Represents the detailed information of operating system of a Xlab image.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.OperatingSystemInfo.Name">
+            <summary>
+            The name of the OS. It is read from: 
+            HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\(ProductName)
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.OperatingSystemInfo.Architecture">
+            <summary>
+            The architecture of the OS. Possible values are: x86 and amd64.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.OperatingSystemInfo.Version">
+            <summary>
+            The version of the OS. It is read from: 
+            HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\(CurrentVersion)
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.OperatingSystemInfo.Language">
+            <summary>
+            The default OS language.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.OperatingSystemInfo.BuildLabEx">
+            <summary>
+            The value is from: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\(BuildLabEx)
+            </summary>
+        </member>
+        <member name="T:XlabApi.Devdiv.RequestStatus">
+            <summary>
+            The current status of the specified request.
+            </summary>
+        </member>
+        <member name="M:XlabApi.Devdiv.RequestStatus.Wait(System.Int32,System.Action{XlabApi.Devdiv.RequestStatus})">
+            <summary>
+            This method waits for specified time on a queued asynchronous Xlab operation to complete.
+            Generally all PUT, POST, DELETE operations on Xlab are initiated asynchronously and a 'RequestStatus' object is returned to the user. 
+            The possible values of a 'RequestStatus' object can be - 'InProgress', 'Failed', 'Succeeded' or 'PartiallySucceeded'. 
+            This method polls xlab at periodic intervals until - 
+            1. The operation's status changes from 'InProgress' to 'Succeeded'.
+            OR
+            2. The operation's status changes from 'InProgress' to 'PartiallySucceeded' or 'Failed' (in which case a XlabException is thrown).
+            OR 
+            3. The timeout value elapses (in which case a TimeoutException is thrown).
+            </summary>
+            <param name="timeoutMilliSeconds">The number of milliseconds to wait. Use Timeout.Infinite (-1) to wait indefinitely.</param>
+            <param name="onProgressUpdated">Receives periodic updates on the ongoing operation. Can be null.</param>
+            <exception cref="T:System.TimeoutException">Thrown if the specified timeout period elapses before operation completes.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="P:XlabApi.Devdiv.RequestStatus.ID">
+            <summary>
+            The request ID of the asynchronous request.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.RequestStatus.VmName">
+            <summary>
+            The name of the VM associated with the request. (optional)
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.RequestStatus.Status">
+            <summary>
+            The current status of the asynchronous request. Possible values are: 
+            InProgress, Failed, Succeeded, PartiallySucceeded
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.RequestStatus.Message">
+            <summary>
+            The error message when a request failed.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.RequestStatus.Lab">
+            <summary>
+            The Xlab instance that this RequestStatus belongs to. 
+            </summary>
+        </member>
+        <member name="T:XlabApi.Devdiv.VM">
+            <summary>
+            Contains the detailed information of an xlab VM. 
+            Also defines operations on Xlab VMs, Xlab VM snapshots. 
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.VM.Status">
+            <summary>
+            The status of the VM. Possible values are: 
+            Running, PowerOff, Saved and many other status string returned by VMM.
+            Note: This field is private. Please use the public 'VMStatus' property instead.
+            </summary>
+        </member>
+        <member name="M:XlabApi.Devdiv.VM.Claim(System.Boolean,System.Int32,System.Action{XlabApi.Devdiv.RequestStatus})">
+            <summary>
+            If virtual machine is unclaimed, then assigns ownership to current user.
+            </summary>
+            <param name="waitForCompletion">
+            If true, method will block until the operation has been completed.
+            Else method will return immediately after initiating the operation.
+            </param>
+            <param name="waitTimeMilliSeconds">
+            The number of milliseconds to wait. Use Timeout.Infinite (-1) to wait indefinitely. 
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <param name="onProgressUpdated">
+            Receives periodic updates on the ongoing operation. Can be null.
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <returns>
+            Returns the VM instance that was claimed, if the 'waitForCompletion' parameter was set to true.
+            Returns null, if the the 'waitForCompletion' parameter was set to false.
+            </returns>
+            <exception cref="T:System.TimeoutException">Thrown if the specified timeout period elapses before operation completes.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.VM.Start(System.Boolean,System.Int32,System.Action{XlabApi.Devdiv.RequestStatus})">
+            <summary>
+            Starts the virtual machine.
+            </summary>
+            <param name="waitForCompletion">
+            If true, method will block until the operation has been completed.
+            Else method will return immediately after initiating the operation.
+            </param>
+            <param name="waitTimeMilliSeconds">
+            The number of milliseconds to wait. Use Timeout.Infinite (-1) to wait indefinitely. 
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <param name="onProgressUpdated">
+            Receives periodic updates on the ongoing operation. Can be null.
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <returns>
+            Returns the VM instance that was started, if the 'waitForCompletion' parameter was set to true.
+            Returns null, if the the 'waitForCompletion' parameter was set to false.
+            </returns>
+            <exception cref="T:System.TimeoutException">Thrown if the specified timeout period elapses before operation completes.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.VM.Shutdown(System.Boolean,System.Int32,System.Action{XlabApi.Devdiv.RequestStatus})">
+            <summary>
+            Shuts down the virtual machine.
+            </summary>
+            <param name="waitForCompletion">
+            If true, method will block until the operation has been completed.
+            Else method will return immediately after initiating the operation.
+            </param>
+            <param name="waitTimeMilliSeconds">
+            The number of milliseconds to wait. Use Timeout.Infinite (-1) to wait indefinitely. 
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <param name="onProgressUpdated">
+            Receives periodic updates on the ongoing operation. Can be null.
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <returns>
+            Returns the VM instance that was shutdown, if the 'waitForCompletion' parameter was set to true.
+            Returns null, if the the 'waitForCompletion' parameter was set to false.
+            </returns>
+            <exception cref="T:System.TimeoutException">Thrown if the specified timeout period elapses before operation completes.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.VM.Save(System.Boolean,System.Int32,System.Action{XlabApi.Devdiv.RequestStatus})">
+            <summary>
+            Saves the virtual machine.
+            </summary>
+            <param name="waitForCompletion">
+            If true, method will block until the operation has been completed.
+            Else method will return immediately after initiating the operation.
+            </param>
+            <param name="waitTimeMilliSeconds">
+            The number of milliseconds to wait. Use Timeout.Infinite (-1) to wait indefinitely. 
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <param name="onProgressUpdated">
+            Receives periodic updates on the ongoing operation. Can be null.
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <returns>
+            Returns the VM instance that was saved, if the 'waitForCompletion' parameter was set to true.
+            Returns null, if the the 'waitForCompletion' parameter was set to false.
+            </returns>
+            <exception cref="T:System.TimeoutException">Thrown if the specified timeout period elapses before operation completes.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.VM.Delete(System.Boolean,System.Int32,System.Action{XlabApi.Devdiv.RequestStatus})">
+            <summary>
+            Deletes the virtual machine.
+            </summary>
+            <param name="waitForCompletion">
+            If true, method will block until the operation has been completed.
+            Else method will return immediately after initiating the operation.
+            </param>
+            <param name="waitTimeMilliSeconds">
+            The number of milliseconds to wait. Use Timeout.Infinite (-1) to wait indefinitely. 
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <param name="onProgressUpdated">
+            Receives periodic updates on the ongoing operation. Can be null.
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <exception cref="T:System.TimeoutException">Thrown if the specified timeout period elapses before operation completes.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.VM.UpdateNote(System.String,System.Boolean,System.Int32,System.Action{XlabApi.Devdiv.RequestStatus})">
+            <summary>
+            Updates the custom note/annotation on the VM.
+            </summary>
+            <param name="note">The new note to annotate the VM. It should be less than 100 characters.</param>
+            <param name="waitForCompletion">
+            If true, method will block until the operation has been completed.
+            Else method will return immediately after initiating the operation.
+            </param>
+            <param name="waitTimeMilliSeconds">
+            The number of milliseconds to wait. Use Timeout.Infinite (-1) to wait indefinitely. 
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <param name="onProgressUpdated">
+            Receives periodic updates on the ongoing operation. Can be null.
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <returns>
+            Returns the VM instance that was updated, if the 'waitForCompletion' parameter was set to true.
+            Returns null, if the the 'waitForCompletion' parameter was set to false.
+            </returns>
+            <exception cref="T:System.TimeoutException">Thrown if the specified timeout period elapses before operation completes.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.VM.GetVMSnapshots">
+            <summary>
+            Lists all snapshots of the VM.
+            </summary>
+            <returns>A collection of all snapshots of the VM.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.VM.CreateSnapshot(System.String,System.String,System.Boolean,System.Int32,System.Action{XlabApi.Devdiv.RequestStatus})">
+            <summary>
+            Creates a new snapshot on the VM.
+            </summary>
+            <param name="newSnapshotName">The name of the new snapshot. Cannot be null or an empty string.</param>
+            <param name="newSnapshotDescription">The description of the new snapshot. Cannot be null. Empty string is valid.</param>
+            <param name="waitForCompletion">
+            If true, method will block until the operation has been completed.
+            Else method will return immediately after initiating the operation.
+            </param>
+            <param name="waitTimeMilliSeconds">
+            The number of milliseconds to wait. Use Timeout.Infinite (-1) to wait indefinitely. 
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <param name="onProgressUpdated">
+            Receives periodic updates on the ongoing operation. Can be null.
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <returns>
+            Returns the newly created VM snapshot instance, if the 'waitForCompletion' parameter was set to true.
+            Returns null, if the the 'waitForCompletion' parameter was set to false.
+            </returns>
+            <exception cref="T:System.TimeoutException">Thrown if the specified timeout period elapses before operation completes.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="P:XlabApi.Devdiv.VM.VMName">
+            <summary>
+            The name of the VM.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VM.ComputerName">
+            <summary>
+            The computer name of the VM.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VM.Description">
+            <summary>
+            The description of the VM.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VM.MemoryMB">
+            <summary>
+            Indicates the memory size of the VM.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VM.CPUCount">
+            <summary>
+            Indicates the CPU count of the VM.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VM.OperatingSystemInfo">
+            <summary>
+            Represents the detailed operation system information of the VM.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VM.InstalledApplications">
+            <summary>
+            Contains the detailed information of installed applications.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VM.CreationTime">
+            <summary>
+            Gets the creation time of the VM, expressed as the Coordinated Universal Time (UTC).
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VM.VMStatus">
+            <summary>
+            The current state of the VM.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VM.Lab">
+            <summary>
+            The Xlab instance that this VM belongs to. 
+            </summary>
+        </member>
+        <member name="T:XlabApi.Devdiv.VMSize">
+            <summary>
+            The size of the virtual machine.
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.VMSize.Default">
+            <summary>
+            Default is the medium size.
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.VMSize.Small">
+            <summary>
+            1 core, 1.7GB RAM
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.VMSize.Medium">
+            <summary>
+            2 cores, 3.5GB RAM
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.VMSize.Large">
+            <summary>
+            4 cores, 7GB RAM
+            </summary>
+        </member>
+        <member name="T:XlabApi.Devdiv.VMSnapshot">
+            <summary>
+            Contains the information of a VM snapshot.
+            </summary>
+        </member>
+        <member name="M:XlabApi.Devdiv.VMSnapshot.Update(System.String,System.String,System.Boolean,System.Int32,System.Action{XlabApi.Devdiv.RequestStatus})">
+            <summary>
+            Updates the name and description of the snapshot.
+            </summary>
+            <param name="newName">The new name of the snapshot. An empty string can be passed in to leave the name unchanged.</param>
+            <param name="newDescription">The new description of the snapshot. An empty string can be passed in to leave the description unchanged.</param>
+            <param name="waitForCompletion">
+            If true, method will block until the operation has been completed.
+            Else method will return immediately after initiating the operation.
+            </param>
+            <param name="waitTimeMilliSeconds">
+            The number of milliseconds to wait. Use Timeout.Infinite (-1) to wait indefinitely. 
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <param name="onProgressUpdated">
+            Receives periodic updates on the ongoing operation. Can be null.
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <returns>
+            Returns the VM snapshot instance that was updated, if the 'waitForCompletion' parameter was set to true.
+            Returns null, if the the 'waitForCompletion' parameter was set to false.
+            </returns>
+            <exception cref="T:System.TimeoutException">Thrown if the specified timeout period elapses before operation completes.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.VMSnapshot.Delete(System.Boolean,System.Int32,System.Action{XlabApi.Devdiv.RequestStatus})">
+            <summary>
+            Deletes the snapshot.
+            </summary>
+            <param name="waitForCompletion">
+            If true, method will block until the operation has been completed.
+            Else method will return immediately after initiating the operation.
+            </param>
+            <param name="waitTimeMilliSeconds">
+            The number of milliseconds to wait. Use Timeout.Infinite (-1) to wait indefinitely. 
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <param name="onProgressUpdated">
+            Receives periodic updates on the ongoing operation. Can be null.
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <exception cref="T:System.TimeoutException">Thrown if the specified timeout period elapses before operation completes.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.VMSnapshot.Restore(System.Boolean,System.Int32,System.Action{XlabApi.Devdiv.RequestStatus})">
+            <summary>
+            Restores VM to the snapshot.
+            </summary>
+            <param name="waitForCompletion">
+            If true, method will block until the operation has been completed.
+            Else method will return immediately after initiating the operation.
+            </param>
+            <param name="waitTimeMilliSeconds">
+            The number of milliseconds to wait. Use Timeout.Infinite (-1) to wait indefinitely. 
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <param name="onProgressUpdated">
+            Receives periodic updates on the ongoing operation. Can be null.
+            This parameter is ignored if the 'waitForCompletion' parameter is false.
+            </param>
+            <returns>
+            Returns the VM snapshot instance that was restored, if the 'waitForCompletion' parameter was set to true.
+            Returns null if the the 'waitForCompletion' parameter was set to false.
+            </returns>
+            <exception cref="T:System.TimeoutException">Thrown if the specified timeout period elapses before operation completes.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="P:XlabApi.Devdiv.VMSnapshot.ID">
+            <summary>
+            The ID of the snapshot.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VMSnapshot.Name">
+            <summary>
+            The name of the snapshot.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VMSnapshot.Description">
+            <summary>
+            The description of the snapshot.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VMSnapshot.VM">
+            <summary>
+            The VM instance that this snapshot belongs to. 
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VMSnapshot.VMName">
+            <summary>
+            The name of VM that this snapshot belongs to. 
+            </summary>
+        </member>
+        <member name="T:XlabApi.Devdiv.VMSnapshotData">
+            <summary>
+            Specifies the data for the snapshot to be created (or updated).
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VMSnapshotData.Name">
+            <summary>
+            The name of the snapshot to be created (or updated).
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.VMSnapshotData.Description">
+            <summary>
+            The description of the snapshot to be created (or updated).
+            </summary>
+        </member>
+        <member name="T:XlabApi.Devdiv.VMStatus">
+            <summary>
+            The various states that an Xlab VM can be in.
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.VMStatus.Unknown">
+            <summary>
+            VM is in an unknown state.
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.VMStatus.Running">
+            <summary>
+            VM is running.
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.VMStatus.Saved">
+            <summary>
+            VM is in a saved state.
+            </summary>
+        </member>
+        <member name="F:XlabApi.Devdiv.VMStatus.PowerOff">
+            <summary>
+            VM is powered-off (shut down).
+            </summary>
+        </member>
+        <member name="T:XlabApi.Devdiv.Xlab">
+             <summary>
+             Represents a connection to an Xlab cloud.
+             </summary>
+             <example>
+             <code>
+             // connect to a xlab cloud.
+             Xlab xlab = new Xlab("Devdiv Private Cloud", "DDCloud", "Xlab API Test App");
+             
+             
+             // iterating through images (VHDs)
+             Console.WriteLine("IMAGES");
+             Console.WriteLine("======");
+             foreach (var image in xlab.GetImages())
+             {
+                 Console.WriteLine(image.ID);
+                 
+                 var os = image.OperatingSystemInfo;
+                 Console.WriteLine("\tOS Info: {0} {1} {2} {3}", os.Name, os.Version, os.Architecture, os.Language);
+             }
+             Console.WriteLine();
+             
+             
+             // iterate through all available VMs 
+             Console.WriteLine("VIRTUAL MACHINES");
+             Console.WriteLine("================");
+             foreach (var vm in xlab.GetVMs())
+             {
+                 Console.WriteLine(vm.VmName);
+            
+                 // iterate through all snapshots in that VM
+                 foreach (var snapshot in vm.GetVMSnapshots())
+                 {
+                     Console.WriteLine("\tSnapshot: {0}", snapshot.Name);
+                 }
+             }
+             Console.WriteLine();
+             
+             
+             // Snapshot operations: create, restore and delete
+             Console.WriteLine("Demonstrating snapshot operations");
+             Console.WriteLine("=================================");
+             
+             VM testVM = xlab.GetVM("CBATESTVM21"); // ensure that "CBATESTVM21" exists. 
+             
+             VMSnapshot testSnap = testVM.CreateSnapshot("mytestsnapshot", "TBD");
+             Console.WriteLine("Snapshot '{0}' created", testSnap.Name);
+             
+             testSnap.Restore();
+             Console.WriteLine("Snapshot '{0}' restored", testSnap.Name);
+             
+             testSnap.Delete();
+             Console.WriteLine("Snapshot '{0}' deleted", testSnap.Name);
+             
+             
+             // creating a VM from an image. 
+             // NOTE: VM creation can take about 30 - 45 mins.
+             // NOTE: You can set the 'waitForCompletion' parameter to 'false' if you don't wish to wait on the VM creation. 
+             Console.WriteLine("Demonstrating VM creation");
+             Console.WriteLine("=========================");
+             
+             Image myImg = xlab.GetImages("DailyBuild.Main", false).OrderByDescending(i => i.CreationTime).First(); // get latest image
+             var myVM = myImg.CreateVM("myTestVM", VMSize.Default, string.Empty, null);
+             Console.WriteLine("VM '{0}' created", myVM.VmName);
+             </code>
+             </example>
+        </member>
+        <member name="F:XlabApi.Devdiv.Xlab.defaultHost">
+            <summary>
+            The default Base URI to send web-requests to.
+            </summary>
+        </member>
+        <member name="M:XlabApi.Devdiv.Xlab.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="cloudName">The xlab cloud to be used.</param>
+            <param name="userRole">The xlab user role to be used.</param>
+            <param name="appName">The name of the application using this Xlab API (for telemetry purposes).</param>
+        </member>
+        <member name="M:XlabApi.Devdiv.Xlab.GetVMs">
+            <summary>
+            Gets all the virtual machines owned by the current user.
+            </summary>
+            <returns>A collection of all VMs owned by current user.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.Xlab.GetVM(System.String)">
+            <summary>
+            Gets VM (owned by current user) with specified name.
+            </summary>
+            <param name="vmName">Name of the virtual machine.</param>
+            <returns>A VM instance if specified machine is found. Else null is returned.</returns>
+            <exception cref="T:XlabApi.Devdiv.XlabException">Multiple VMs were found with specified name.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.Xlab.GetFreeVMs">
+            <summary>
+            Gets all the free virtual machines (unclaimed by any user).
+            </summary>
+            <returns>A collection of all free VMs unclaimed by any user.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.Xlab.GetFreeVM(System.String)">
+            <summary>
+            Gets a free, unclaimed VM with specified name.
+            </summary>
+            <param name="vmName">Name of the virtual machine.</param>
+            <returns>A VM instance if specified machine is found. Else null is returned.</returns>
+            <exception cref="T:XlabApi.Devdiv.XlabException">Multiple VMs were found with specified name.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.Xlab.GetFreeDevVMs">
+            <summary>
+            Gets all the free "dev" virtual machines (unclaimed by any user).
+            </summary>
+            <returns>A collection of all free "dev" VMs unclaimed by any user.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.Xlab.GetFreeDevVM(System.String)">
+            <summary>
+            Gets a free, unclaimed "dev" VM with specified name.
+            </summary>
+            <param name="vmName">Name of the virtual machine.</param>
+            <returns>A VM instance if specified machine is found. Else null is returned.</returns>
+            <exception cref="T:XlabApi.Devdiv.XlabException">Multiple VMs were found with specified name.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.Xlab.GetImages">
+            <summary>
+            Gets all available virtual machine base images. 
+            </summary>
+            <returns>A collection of all available VHDs/images.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown if server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="M:XlabApi.Devdiv.Xlab.GetImages(XlabApi.Devdiv.ImageCategory)">
+            <summary>
+            Extracts xlab images that match specified image category.
+            </summary>
+            <param name="category">The ImageCategory of an xlab image ("Seed", "Stable", "DailyBuild", "Dogfood" etc).</param>
+            <returns>An unordered collection of images that match the specified condition(s).</returns>
+        </member>
+        <member name="M:XlabApi.Devdiv.Xlab.GetImages(System.String,System.Boolean)">
+            <summary>
+            Extracts xlab images created using specified image configuration.
+            </summary>
+            <param name="configurationId">The configuration ID of the image.</param>
+            <param name="partialMatch">Partial (substring) match or exact string match? Case-insensitive string comparison is used for both.</param>
+            <returns>An unordered collection of images that match the specified condition(s).</returns>
+        </member>
+        <member name="M:XlabApi.Devdiv.Xlab.GetImages(System.String,System.String,System.String)">
+            <summary>
+            Extracts xlab images that match specified OS filters.
+            - You can specify a regex pattern in any of the filters.
+            - Partial matches are supported. E.g. Setting the 'osName' parameter to 'server' will match 'Windows 2008 
+              Server' and 'Windows 2012 Server R2" etc.
+            - Setting a filter to null or empty string will cause that particular filter to be ignored during search. 
+            </summary>
+            <param name="osNameFilter">The OS Name. E.g. "Windows 8.1", "Windows Server 2012 R2".</param>
+            <param name="osArchFilter">The OS language. E.g. "x86", "amd64".</param>
+            <param name="osLangFilter">The OS language. E.g. "en-US", "fr-FR", "zh-CHT".</param>
+            <returns>An unordered collection of images that match the specified condition(s).</returns>
+        </member>
+        <member name="M:XlabApi.Devdiv.Xlab.IsMatchPredicate(System.String,System.String)">
+            <summary>
+            A predicate that compares a pattern string against a reference string. 
+            Substring matches, regex pattern matches are supported.
+            </summary>
+            <param name="reference">The reference string against which the pattern will be checked.</param>
+            <param name="pattern">A string which will be checked against the reference string. </param>
+            <returns>True, if either a substring match or regex match is found. False otherwise.</returns>
+        </member>
+        <member name="M:XlabApi.Devdiv.Xlab.MakeHttpRequest``2(System.Net.Http.HttpMethod,System.String,``0)">
+            <summary>
+            Wrapper method that initiates a web-request to Xlab.
+            </summary>
+            <typeparam name="TRequestBody">The type of the web-request's body.</typeparam>
+            <typeparam name="TResponseBody">The type of the web-responseBody's body.</typeparam>
+            <param name="requestMethodName">Type of web-request to invoke - 'Get', 'Put', 'Post', "Delete' etc.</param>
+            <param name="requestUri">The uri of the web request (without the host name).</param>
+            <param name="content">Payload which will be sent as the body of the web request.</param>
+            <returns>The web-responseBody's body is serialized to type 'TResponseBody'.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when server returns a non-2xx HTTP status code.</exception>
+        </member>
+        <member name="P:XlabApi.Devdiv.Xlab.CloudName">
+            <summary>
+            The xlab cloud being used.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.Xlab.UserRole">
+            <summary>
+            The xlab user role being used.
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.Xlab.AppName">
+            <summary>
+            The name of the application using this Xlab API (for telemetry purposes).
+            </summary>
+        </member>
+        <member name="P:XlabApi.Devdiv.Xlab.Host">
+            <summary>
+            Base URI to send web-requests to.
+            </summary>
+        </member>
+        <member name="T:XlabApi.Devdiv.XlabException">
+            <summary>
+            Indicates unexpected errors associated with Xlab requests.
+            </summary>
+        </member>
+        <member name="M:XlabApi.Devdiv.XlabException.#ctor">
+            <summary>
+            Initializes a new instance of the XlabException class.
+            </summary>
+        </member>
+        <member name="M:XlabApi.Devdiv.XlabException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the XlabException class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+        </member>
+        <member name="M:XlabApi.Devdiv.XlabException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the XlabException class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="inner">The exception that is the cause of the current exception, or a null reference if no inner exception is specified.</param>
+        </member>
+        <member name="M:XlabApi.Devdiv.XlabException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the XlabException class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination.</param>
+        </member>
+    </members>
+</doc>
