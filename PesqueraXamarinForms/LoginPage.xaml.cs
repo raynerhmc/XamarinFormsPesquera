@@ -17,7 +17,7 @@ namespace PesqueraXamarinForms
 				DisplayAlert("Error de validación", "Usuário o contraseña invalidas", "Volver a intentar");
 			} else {
 				// REMEMBER LOGIN STATUS!
-				App.Current.Properties["IsLoggedIn"] = true;
+				//App.Current.Properties["IsLoggedIn"] = true;
 				ShowMainPage ();
 
 				/* ILoginManager ilm = new AppPages ();
@@ -34,7 +34,7 @@ namespace PesqueraXamarinForms
 
 		//Function to autentificate username and password, it may change accodingly
 		bool IsValidUsernameAndPassword(){
-			return true;
+			//return true;
 			if ( eUserName.Text == "funcionario" && eUserPassword.Text == "123abc" ){
 				return true;
 			}

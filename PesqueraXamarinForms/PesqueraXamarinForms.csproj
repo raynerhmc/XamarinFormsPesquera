@@ -41,7 +41,6 @@
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ILoginManager.cs" />
-    <Compile Include="AppPages.cs" />
     <Compile Include="Axis\Category.cs" />
     <Compile Include="Axis\Date.cs" />
     <Compile Include="Axis\MultipleAxis.cs" />
