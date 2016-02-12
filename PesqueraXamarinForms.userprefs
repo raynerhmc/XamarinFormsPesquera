@@ -1,15 +1,35 @@
 ﻿<Properties StartupItem="iOS/PesqueraXamarinForms.iOS.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6s.9.2" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/Info.plist">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone" />
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="iOS/Info.plist" />
-      <File FileName="PesqueraXamarinForms/ResumenTemporadaPie.cs" Line="1" Column="1" />
+      <File FileName="PesqueraXamarinForms/ResumenTemporadaPie.cs" Line="111" Column="6" />
       <File FileName="PesqueraXamarinForms/HttpJson/HttpJsonLoader.cs" Line="1" Column="1" />
       <File FileName="PesqueraXamarinForms/LoginPage.xaml.cs" Line="1" Column="1" />
       <File FileName="PesqueraXamarinForms/Modelo/dtoAnio.cs" Line="1" Column="1" />
       <File FileName="PesqueraXamarinForms/GlobalParameters.cs" Line="1" Column="1" />
       <File FileName="PesqueraXamarinForms/Modelo/dtoZona.cs" Line="1" Column="1" />
+      <File FileName="iOS/Main.cs" Line="18" Column="4" />
+      <File FileName="iOS/AppDelegate.cs" Line="7" Column="7" />
+      <File FileName="iOS/PhoneDialer.cs" Line="19" Column="3" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PesqueraXamarinForms" expanded="True">
+            <Node name="PesqueraXamarinForms.iOS" expanded="True">
+              <Node name="References" expanded="True">
+                <Node name="From Packages" expanded="True" />
+              </Node>
+              <Node name="Packages" expanded="True">
+                <Node name="Xamarin.Forms" selected="True" />
+              </Node>
+              <Node name="Resources" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Syncfusion.SfChart.XForms.iOS.Renderers;
 //using Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 using Xamarin.Forms;
 

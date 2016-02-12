@@ -108,7 +108,7 @@ namespace PesqueraXamarinForms
 
 			pie_ = new PieSeries();
 
-			pie_.ExplodeOnTouch = true;
+			//pie_.ExplodeOnTouch = true;
 			pie_.ItemsSource = datas;
 			pie_.LegendIcon = ChartLegendIcon.Diamond;
 
