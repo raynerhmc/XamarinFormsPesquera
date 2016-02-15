@@ -1,7 +1,7 @@
-﻿using MonoTouch.Foundation;
+﻿using Foundation;
 using PesqueraXamarinForms.iOS;
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(PhoneDialer))]
