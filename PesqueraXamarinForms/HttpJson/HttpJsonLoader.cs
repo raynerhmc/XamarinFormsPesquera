@@ -24,6 +24,9 @@ namespace PesqueraXamarinForms
 		public List < dtoGrafico03 > lgrafico03 { get; set; }
 		public List < dtoGrafico04 > lgrafico04 { get; set; }
 		public List < dtoGrafico05 > lgrafico05 { get; set; }
+		public List < dtoGrafico06 > lgrafico06 { get; set; }
+		public List < dtoGrafico07 > lgrafico07 { get; set; }
+		public List < dtoGrafico08 > lgrafico08 { get; set; }
 		public HttpJsonLoader ()
 		{
 			lanios = null;
@@ -34,6 +37,9 @@ namespace PesqueraXamarinForms
 			lgrafico03 = null;
 			lgrafico04 = null;
 			lgrafico05 = null;
+			lgrafico06 = null;
+			lgrafico07 = null;
+			lgrafico08 = null;
 		}
 
 		public async Task< List<dtoAnio> > LoadAniosFromInternet(){
@@ -177,6 +183,66 @@ namespace PesqueraXamarinForms
 			answer_json_result_ = JsonResult.ToString ();
 			lgrafico05 = JsonConvert.DeserializeObject<List< dtoGrafico05 >>(JsonResult);
 			return lgrafico05;
+		}
+
+
+		public async Task< List < dtoGrafico06 > > LoadGrafico06FromInternet( int anoTempo, string codigoZona, 
+			string periodo ){
+
+			string url_grafico06 = GlobalParameters.API_URL + GlobalParameters.API_GRAFICO_06;
+			url_grafico06 += "?" + GlobalParameters.PARAM_HTTP_YEAR + "=" + anoTempo.ToString ();
+			url_grafico06 += "&" + GlobalParameters.PARAM_HTTP_ZONA + "=" + codigoZona;
+			url_grafico06 += "&" + GlobalParameters.PARAM_HTTP_PERIODO + "=" + periodo;
+			HttpClient client = new HttpClient();
+			client.BaseAddress = new Uri(url_grafico06);
+
+			client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8");
+			var response = await client.GetAsync(client.BaseAddress);
+			response.EnsureSuccessStatusCode();
+			var JsonResult = response.Content.ReadAsStringAsync().Result;
+			answer_json_result_ = JsonResult.ToString ();
+			lgrafico06 = JsonConvert.DeserializeObject<List< dtoGrafico06 >>(JsonResult);
+			return lgrafico06;
+		}
+
+		public async Task< List < dtoGrafico07 > > LoadGrafico07FromInternet( int anoTempo, string codigoZona, 
+			string periodo ){
+
+			string url_grafico07 = GlobalParameters.API_URL + GlobalParameters.API_GRAFICO_07;
+			url_grafico07 += "?" + GlobalParameters.PARAM_HTTP_YEAR + "=" + anoTempo.ToString ();
+			url_grafico07 += "&" + GlobalParameters.PARAM_HTTP_ZONA + "=" + codigoZona;
+			url_grafico07 += "&" + GlobalParameters.PARAM_HTTP_PERIODO + "=" + periodo;
+			HttpClient client = new HttpClient();
+			client.BaseAddress = new Uri(url_grafico07);
+
+			client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8");
+			var response = await client.GetAsync(client.BaseAddress);
+			response.EnsureSuccessStatusCode();
+			var JsonResult = response.Content.ReadAsStringAsync().Result;
+			answer_json_result_ = JsonResult.ToString ();
+			lgrafico07 = JsonConvert.DeserializeObject<List< dtoGrafico07 >>(JsonResult);
+			return lgrafico07;
+		}
+
+		public async Task< List < dtoGrafico08 > > LoadGrafico08FromInternet( int anoTempo, string codigoZona, 
+			string periodo, string ranPorcen ){
+
+			string url_grafico08 = GlobalParameters.API_URL + GlobalParameters.API_GRAFICO_08;
+			url_grafico08 += "?" + GlobalParameters.PARAM_HTTP_YEAR + "=" + anoTempo.ToString ();
+			url_grafico08 += "&" + GlobalParameters.PARAM_HTTP_ZONA + "=" + codigoZona;
+			url_grafico08 += "&" + GlobalParameters.PARAM_HTTP_PERIODO + "=" + periodo;
+			url_grafico08 += "&" + GlobalParameters.PARAM_HTTP_RANGO_PORCENTAGE + "=" + ranPorcen;
+
+			HttpClient client = new HttpClient();
+			client.BaseAddress = new Uri(url_grafico08);
+
+			client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8");
+			var response = await client.GetAsync(client.BaseAddress);
+			response.EnsureSuccessStatusCode();
+			var JsonResult = response.Content.ReadAsStringAsync().Result;
+			answer_json_result_ = JsonResult.ToString ();
+			lgrafico08 = JsonConvert.DeserializeObject<List< dtoGrafico08 >>(JsonResult);
+			return lgrafico08;
 		}
 	}
 }

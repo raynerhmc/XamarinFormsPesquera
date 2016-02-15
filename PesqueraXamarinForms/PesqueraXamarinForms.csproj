@@ -30,16 +30,12 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="PesqueraXamarinForms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MyPage.xaml.cs">
       <DependentUpon>MyPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PhoneTranslator.cs" />
     <Compile Include="IDialer.cs" />
-    <Compile Include="LoginPage.xaml.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ILoginManager.cs" />
     <Compile Include="Axis\Category.cs" />
     <Compile Include="Axis\Date.cs" />
@@ -47,11 +43,7 @@
     <Compile Include="Axis\Numerical.cs" />
     <Compile Include="ResumenTemporadaPie.cs" />
     <Compile Include="MenuPesquera.cs" />
-    <Compile Include="PescaRegionColumn.cs" />
-    <Compile Include="PescaPuertoColumn.cs" />
     <Compile Include="GlobalParameters.cs" />
-    <Compile Include="PescaPlantaBar.cs" />
-    <Compile Include="PescaDiaColumnSpline.cs" />
     <Compile Include="HttpJson\HttpJsonLoader.cs" />
     <Compile Include="Modelo\dtoAnio.cs" />
     <Compile Include="Modelo\dtoZona.cs" />
@@ -62,6 +54,17 @@
     <Compile Include="Modelo\dtoGrafico04.cs" />
     <Compile Include="Modelo\dtoGrafico05.cs" />
     <Compile Include="Modelo\LoadingModel.cs" />
+    <Compile Include="Modelo\dtoGrafico06.cs" />
+    <Compile Include="Modelo\dtoGrafico07.cs" />
+    <Compile Include="Modelo\dtoGrafico08.cs" />
+    <Compile Include="LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PescaDiaColumnSpline.cs" />
+    <Compile Include="PescaPlantaBar.cs" />
+    <Compile Include="PescaPuertoColumn.cs" />
+    <Compile Include="PescaRegionColumn.cs" />
+    <Compile Include="PesqueraXamarinForms.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -163,5 +166,6 @@
     <Folder Include="Axis\" />
     <Folder Include="Modelo\" />
     <Folder Include="HttpJson\" />
+    <Folder Include="GUI\" />
   </ItemGroup>
 </Project>

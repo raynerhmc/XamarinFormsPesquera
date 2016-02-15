@@ -40,6 +40,7 @@ namespace PesqueraXamarinForms
 		public static string PARAM_HTTP_PUERTO = "codigoPuerto";
 		public static string PARAM_HTTP_MES = "mes";
 		public static string PARAM_HTTP_QUINCENA = "quincena";
+		public static string PARAM_HTTP_RANGO_PORCENTAGE = "ranPorcen";
 
 
 		public static string[] LIST_MESES = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", 
@@ -51,6 +52,15 @@ namespace PesqueraXamarinForms
 		public static string[] LIST_QUINCENAS = { "1°", "2°" };
 		public static string[] LIST_COD_QUINCENAS = { "1", "2" };
 
+		public static string[] LIST_RANGO_PORCENTAGES = { "[0-50]", "[51-80]", "[81-90]", "[91-100]", "[P>=101]" };
+		public static string[] LIST_COD_RANGO_PORCENTAGES = { "[0-50]", "[51-80]", "[81-90]", "[91-100]", "[101-más]" };
+
+
+		/* 
+		 * We declare these lists for testing purposes, 
+		 * they are not referenced in any other class anymore. 
+		 * Thus, they can be safely removed 
+		*/
 		public static int[] LIST_ANIOS = { 2014, 2015, 2016 };
 
 		public static string[] LIST_PERIODOS = { "I", "II" };
@@ -60,6 +70,8 @@ namespace PesqueraXamarinForms
 		public static string[] LIST_REGIONES = { "Piura", "La Libertad", "Ancash", "Lima", "Callao", "Ica" };
 
 		public static string[] LIST_PUERTOS = { "Carquin", "Chancay", "Supe", "Vegueta" };
+
+		/////////////// UNTIL HERE ///////////////
 
 	}
 }

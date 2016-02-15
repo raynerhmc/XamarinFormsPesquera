@@ -1,14 +1,11 @@
 ﻿<Properties StartupItem="iOS/PesqueraXamarinForms.iOS.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6s.9.2" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/Info.plist">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PesqueraXamarinForms/Modelo/dtoGrafico06.cs">
     <Files>
-      <File FileName="iOS/Info.plist" />
-      <File FileName="PesqueraXamarinForms/ResumenTemporadaPie.cs" Line="1" Column="1" />
-      <File FileName="PesqueraXamarinForms/HttpJson/HttpJsonLoader.cs" Line="1" Column="1" />
-      <File FileName="PesqueraXamarinForms/LoginPage.xaml.cs" Line="1" Column="1" />
-      <File FileName="PesqueraXamarinForms/Modelo/dtoAnio.cs" Line="1" Column="1" />
-      <File FileName="PesqueraXamarinForms/GlobalParameters.cs" Line="1" Column="1" />
-      <File FileName="PesqueraXamarinForms/Modelo/dtoZona.cs" Line="1" Column="1" />
+      <File FileName="PesqueraXamarinForms/Modelo/dtoGrafico05.cs" Line="8" Column="35" />
+      <File FileName="PesqueraXamarinForms/Modelo/dtoGrafico06.cs" Line="15" Column="34" />
+      <File FileName="PesqueraXamarinForms/Modelo/dtoGrafico07.cs" Line="1" Column="1" />
+      <File FileName="PesqueraXamarinForms/Modelo/dtoGrafico08.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
