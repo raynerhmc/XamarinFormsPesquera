@@ -31,17 +31,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MyPage.xaml.cs">
-      <DependentUpon>MyPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PhoneTranslator.cs" />
     <Compile Include="IDialer.cs" />
     <Compile Include="ILoginManager.cs" />
-    <Compile Include="Axis\Category.cs" />
-    <Compile Include="Axis\Date.cs" />
-    <Compile Include="Axis\MultipleAxis.cs" />
-    <Compile Include="Axis\Numerical.cs" />
-    <Compile Include="ResumenTemporadaPie.cs" />
     <Compile Include="MenuPesquera.cs" />
     <Compile Include="GlobalParameters.cs" />
     <Compile Include="HttpJson\HttpJsonLoader.cs" />
@@ -57,14 +49,27 @@
     <Compile Include="Modelo\dtoGrafico06.cs" />
     <Compile Include="Modelo\dtoGrafico07.cs" />
     <Compile Include="Modelo\dtoGrafico08.cs" />
-    <Compile Include="LoginPage.xaml.cs">
+    <Compile Include="GUI\MyPage.xaml.cs">
+      <DependentUpon>MyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Gra06QuincenaColumnSpline.cs" />
+    <Compile Include="PesqueraXamarinForms.cs" />
+    <Compile Include="GUI\Gra07GruposMColumn.cs" />
+    <Compile Include="GUI\Gra08GruposRangoBar.cs" />
+    <Compile Include="MenuManager\MenuItem.cs" />
+    <Compile Include="MenuManager\MenuCell.cs" />
+    <Compile Include="MenuManager\MenuListData.cs" />
+    <Compile Include="GUI\Gra01ResumenTemporadaPie.cs" />
+    <Compile Include="GUI\Gra02PescaRegionColumn.cs" />
+    <Compile Include="GUI\Gra03PescaPuertoColumn.cs" />
+    <Compile Include="GUI\Gra04PescaPlantaBar.cs" />
+    <Compile Include="GUI\Gra05PescaDiaColumnSpline.cs" />
+    <Compile Include="MenuManager\MenuListView.cs" />
+    <Compile Include="MenuManager\MenuPage.cs" />
+    <Compile Include="MenuManager\RootPage.cs" />
+    <Compile Include="GUI\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PescaDiaColumnSpline.cs" />
-    <Compile Include="PescaPlantaBar.cs" />
-    <Compile Include="PescaPuertoColumn.cs" />
-    <Compile Include="PescaRegionColumn.cs" />
-    <Compile Include="PesqueraXamarinForms.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.4.3.6376\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.3.6376\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -82,7 +87,7 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfChart.XForms">
-      <HintPath>..\packages\syncfusion\pcl\Syncfusion.SfChart.XForms.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Downloads\syncfusionessentialxamarin\lib\pcl\Syncfusion.SfChart.XForms.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\packages\Xamarin.Forms.1.4.3.6376\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
@@ -98,17 +103,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MyPage.xaml">
+    <EmbeddedResource Include="GUI\MyPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginPage.xaml">
+    <EmbeddedResource Include="GUI\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Axis\" />
     <Folder Include="Modelo\" />
     <Folder Include="HttpJson\" />
     <Folder Include="GUI\" />
+    <Folder Include="MenuManager\" />
   </ItemGroup>
 </Project>

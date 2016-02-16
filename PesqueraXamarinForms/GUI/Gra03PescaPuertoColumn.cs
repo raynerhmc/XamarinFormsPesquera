@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 namespace PesqueraXamarinForms
 {
-	public class PescaPuertoColumn : ContentPage, INotifyPropertyChanged
+	public class Gra03PescaPuertoColumn : ContentPage, INotifyPropertyChanged
 	{
 		private bool _isBusy ;
 		public bool column_chart_already_loading
@@ -62,7 +62,7 @@ namespace PesqueraXamarinForms
 		bool first_time_loading_periods = false;
 		bool first_time_loading_regions = false;
 
-		public PescaPuertoColumn ( HttpJsonLoader http_loader, int anio_index, int zona_index, int periodo_index, int region_index )
+		public Gra03PescaPuertoColumn ( HttpJsonLoader http_loader, int anio_index, int zona_index, int periodo_index, int region_index )
 		{
 			http_loader_ = http_loader;
 			zonaNameList_ = http_loader_.lzonas;
@@ -111,7 +111,7 @@ namespace PesqueraXamarinForms
 
 		}
 
-		public PescaPuertoColumn ()
+		public Gra03PescaPuertoColumn ()
 		{
 			GetChart();
 			this.Content = main_page_;
@@ -127,35 +127,50 @@ namespace PesqueraXamarinForms
 			await Navigation.PushAsync( new MyPage() ) ;
 		}
 
-		async void ShowResumenTemporadaPie(){
+		async void ShowGra01ResumenTemporadaPie(){
 			pmenu_pesquera_.SelectedIndex = 2;
-			await Navigation.PushAsync( new ResumenTemporadaPie() ) ;
+			await Navigation.PushAsync( new Gra01ResumenTemporadaPie() ) ;
 		}
 
-		async void ShowPescaRegionColumn(){
+		async void ShowGra02PescaRegionColumn(){
 			pmenu_pesquera_.SelectedIndex = 2;
-			await Navigation.PushAsync( new PescaRegionColumn() ) ;
+			await Navigation.PushAsync( new Gra02PescaRegionColumn() ) ;
 		}
 
 
-		async void ShowPescaPlantaBarWithData(int selected_puerto){
+		async void ShowGra04PescaPlantaBarWithData(int selected_puerto){
 			if (selected_puerto == -1)
 				return;
 			pmenu_pesquera_.SelectedIndex = 2;
-			await Navigation.PushAsync( new PescaPlantaBar( http_loader_, p_list_year_.SelectedIndex, 
+			await Navigation.PushAsync( new Gra04PescaPlantaBar( http_loader_, p_list_year_.SelectedIndex, 
 				p_list_zone_.SelectedIndex, p_list_period_.SelectedIndex, p_list_region_.SelectedIndex, 
 				selected_puerto
 			) ) ;
 		}
 
-		async void ShowPescaPlantaBar(){
+		async void ShowGra04PescaPlantaBar(){
 			pmenu_pesquera_.SelectedIndex = 2;
-			await Navigation.PushAsync( new PescaPlantaBar() ) ;
+			await Navigation.PushAsync( new Gra04PescaPlantaBar() ) ;
 		}
 
-		async void ShowPescaDiaColumnSpline(){
+		async void ShowGra05PescaDiaColumnSpline(){
 			pmenu_pesquera_.SelectedIndex = 2;
-			await Navigation.PushAsync( new PescaDiaColumnSpline() ) ;
+			await Navigation.PushAsync( new Gra05PescaDiaColumnSpline() ) ;
+		}
+
+		async void ShowGra06QuincenaColumnSpline(){
+			pmenu_pesquera_.SelectedIndex = 2;
+			await Navigation.PushAsync (new Gra06QuincenaColumnSpline ());
+		}
+
+		async void ShowGra07GruposMColumn(){
+			pmenu_pesquera_.SelectedIndex = 2;
+			await Navigation.PushAsync (new Gra07GruposMColumn ());
+		}
+
+		async void ShowGra08GruposRangoBar(){
+			pmenu_pesquera_.SelectedIndex = 2;
+			await Navigation.PushAsync (new Gra08GruposRangoBar ());
 		}
 
 		private async void GetChart()
@@ -344,7 +359,7 @@ namespace PesqueraXamarinForms
 			first_time_loading_years = false;
 
 			chart.SelectionChanged += (object sender, ChartSelectionEventArgs csea) => {
-				ShowPescaPlantaBarWithData( csea.SelectedDataPointIndex );
+				ShowGra04PescaPlantaBarWithData( csea.SelectedDataPointIndex );
 			};
 		}
 
@@ -494,19 +509,25 @@ namespace PesqueraXamarinForms
 					switch(p_list_menu.SelectedIndex) 
 					{
 					case 0:
-						ShowResumenTemporadaPie();
+						ShowGra01ResumenTemporadaPie();
 						break;
 					case 1:
-						ShowPescaRegionColumn();
+						ShowGra02PescaRegionColumn();
 						break;
 					case 3:
-						ShowPescaPlantaBar();
+						ShowGra04PescaPlantaBar();
 						break;
 					case 4:
-						ShowPescaDiaColumnSpline();
+						ShowGra05PescaDiaColumnSpline();
 						break;
 					case 5:
-						ShowMyPage();
+						ShowGra06QuincenaColumnSpline();
+						break;
+					case 6:
+						ShowGra07GruposMColumn();
+						break;
+					case 7:
+						ShowGra08GruposRangoBar();
 						break;
 					}
 

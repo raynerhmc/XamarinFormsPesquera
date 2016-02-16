@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PesqueraXamarinForms", "PesqueraXamarinForms\PesqueraXamarinForms.csproj", "{C34A3FCD-1E95-4BD0-A8F5-E11E9628B3D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PesqueraXamarinForms.iOS", "iOS\PesqueraXamarinForms.iOS.csproj", "{CEBB385B-B271-44BB-A42D-CBE40B02E045}"
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "PesqueraXamarinForms.iOS", "iOS\PesqueraXamarinForms.iOS.csproj", "{CEBB385B-B271-44BB-A42D-CBE40B02E045}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

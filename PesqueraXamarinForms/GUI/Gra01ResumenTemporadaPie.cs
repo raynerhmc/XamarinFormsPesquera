@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 
 namespace PesqueraXamarinForms
 {
-	public class ResumenTemporadaPie : ContentPage, INotifyPropertyChanged
+	public class Gra01ResumenTemporadaPie : ContentPage, INotifyPropertyChanged
 	{
 		private bool _isBusy ;
 		public bool pie_chart_already_loading
@@ -50,7 +50,7 @@ namespace PesqueraXamarinForms
 
 		StackLayout main_page_;
 
-		public ResumenTemporadaPie()
+		public Gra01ResumenTemporadaPie()
 		{
 			GetChart ();
 			this.Content = main_page_;
@@ -69,32 +69,47 @@ namespace PesqueraXamarinForms
 			await Navigation.PushAsync( new MyPage() ) ;
 		}
 			
-		async void ShowPescaRegionColumn(){
+		async void ShowGra02PescaRegionColumn(){
 			pmenu_pesquera_.SelectedIndex = 0;
-			await Navigation.PushAsync( new PescaRegionColumn() ) ;
+			await Navigation.PushAsync( new Gra02PescaRegionColumn() ) ;
 		}
 
-		async void ShowPescaRegionColumnWithData(){
+		async void ShowGra02PescaRegionColumnWithData(){
 			pmenu_pesquera_.SelectedIndex = 0;
 
-			await Navigation.PushAsync( new PescaRegionColumn( http_loader_.lanios, p_list_year_.SelectedIndex, 
+			await Navigation.PushAsync( new Gra02PescaRegionColumn( http_loader_.lanios, p_list_year_.SelectedIndex, 
 				http_loader_.lzonas, p_list_zone_.SelectedIndex, http_loader_.lperiodos, p_list_period_.SelectedIndex
 			) ) ;
 		}
 
-		async void ShowPescaPuertoColumn(){
+		async void ShowGra03PescaPuertoColumn(){
 			pmenu_pesquera_.SelectedIndex = 0;
-			await Navigation.PushAsync( new PescaPuertoColumn() ) ;
+			await Navigation.PushAsync( new Gra03PescaPuertoColumn() ) ;
 		}
 
-		async void ShowPescaPlantaBar(){
+		async void ShowGra04PescaPlantaBar(){
 			pmenu_pesquera_.SelectedIndex = 0;
-			await Navigation.PushAsync( new PescaPlantaBar() ) ;
+			await Navigation.PushAsync( new Gra04PescaPlantaBar() ) ;
 		}
 
-		async void ShowPescaDiaColumnSpline(){
+		async void ShowGra05PescaDiaColumnSpline(){
 			pmenu_pesquera_.SelectedIndex = 0;
-			await Navigation.PushAsync( new PescaDiaColumnSpline() ) ;
+			await Navigation.PushAsync( new Gra05PescaDiaColumnSpline() ) ;
+		}
+
+		async void ShowGra06QuincenaColumnSpline(){
+			pmenu_pesquera_.SelectedIndex = 0;
+			await Navigation.PushAsync (new Gra06QuincenaColumnSpline ());
+		}
+
+		async void ShowGra07GruposMColumn(){
+			pmenu_pesquera_.SelectedIndex = 0;
+			await Navigation.PushAsync (new Gra07GruposMColumn ());
+		}
+
+		async void ShowGra08GruposRangoBar(){
+			pmenu_pesquera_.SelectedIndex = 0;
+			await Navigation.PushAsync (new Gra08GruposRangoBar ());
 		}
 
 		private async void GetChart()
@@ -241,7 +256,7 @@ namespace PesqueraXamarinForms
 
 
 			chart.SelectionChanged += (object sender, ChartSelectionEventArgs csea) => {
-				ShowPescaRegionColumnWithData();
+				ShowGra02PescaRegionColumnWithData();
 			};
 
 		}
@@ -345,19 +360,25 @@ namespace PesqueraXamarinForms
 					switch(p_list_menu.SelectedIndex) 
 					{
 					case 1:
-						ShowPescaRegionColumn();
+						ShowGra02PescaRegionColumn();
 						break;
 					case 2:
-						ShowPescaPuertoColumn();
+						ShowGra03PescaPuertoColumn();
 						break;
 					case 3:
-						ShowPescaPlantaBar();
+						ShowGra04PescaPlantaBar();
 						break;
 					case 4:
-						ShowPescaDiaColumnSpline();
+						ShowGra05PescaDiaColumnSpline();
 						break;
 					case 5:
-						ShowMyPage();
+						ShowGra06QuincenaColumnSpline();
+						break;
+					case 6:
+						ShowGra07GruposMColumn();
+						break;
+					case 7:
+						ShowGra08GruposRangoBar();
 						break;
 					}
 

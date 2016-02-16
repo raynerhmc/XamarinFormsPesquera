@@ -28,7 +28,8 @@ namespace PesqueraXamarinForms
 			//var isLoggedIn = App.Current.Properties.ContainsKey("IsLoggedIn")?(bool)App.Current.Properties ["IsLoggedIn"]:false;
 
 			//CrossPieCharts.FormsPlugin.Abstractions.CrossPieChartSample pieChart = new CrossPieCharts.FormsPlugin.Abstractions.CrossPieChartSample ();
-			await Navigation.PushAsync( new ResumenTemporadaPie());
+			await Navigation.PushAsync( new Gra01ResumenTemporadaPie());
+			//new NavigationPage( new RootPage());
 			//await Navigation.PushAsync (pieChart.GetPageWithPieChart ());
 		}
 

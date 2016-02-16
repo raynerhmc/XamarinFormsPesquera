@@ -7,10 +7,9 @@ using System.Text;
 using Xamarin.Forms;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
 namespace PesqueraXamarinForms
 {
-	public class PescaPlantaBar : ContentPage, INotifyPropertyChanged
+	public class Gra08GruposRangoBar : ContentPage, INotifyPropertyChanged
 	{
 		private bool _isBusy ;
 		public bool row_chart_already_loading
@@ -39,45 +38,38 @@ namespace PesqueraXamarinForms
 
 		StackLayout main_page_;
 
-		private string title_page_ = "AVANCE DE PESCA POR PLANTA";
-		private string [] menu_labels_ = {"Año: ","Zona: ","Periodo: ", "Región: ", "Puerto: "};
+		private string title_page_ = "AVANCE POR GRUPOS EN [RANGO %]";
+		private string[] menu_labels_ = { "Año: ", "Zona: ", "Periodo: ", "Rango: " };
 
 		private Picker pmenu_pesquera_;
 		private Picker p_list_period_;
 		private Picker p_list_year_;
 		private Picker p_list_zone_;
-		private Picker p_list_region_;
-		private Picker p_list_puerto_;
+		private Picker p_list_rango_;
+
 		private List<dtoZona> zonaNameList_;
-		private List<dtoGrafico02> g02List_;
-		private List<dtoGrafico03> g03List_;
 
 		BarSeries row_bars_;
 
 		bool periodo_already_loading = false;
-		bool region_already_loading = false;
-		bool puerto_already_loading = false;
+
 
 		HttpJsonLoader http_loader_ =  new HttpJsonLoader();
 
 		bool first_time_loading_years = false;
 		bool first_time_loading_zones = false;
 		bool first_time_loading_periods = false;
-		bool first_time_loading_regions = false;
-		bool first_time_loading_puertos = false;
+		bool first_time_loading_rangos = false;
 
-		public PescaPlantaBar( HttpJsonLoader http_loader, int anio_index, int zona_index, 
-			int periodo_index, int region_index, int puerto_index ){
+		public Gra08GruposRangoBar ( HttpJsonLoader http_loader, int anio_index, int zona_index, 
+			int periodo_index, int rango_index){
 			http_loader_ = http_loader;
 			zonaNameList_ = http_loader_.lzonas;
-			g02List_ = http_loader.lgrafico02;
-			g03List_ = http_loader.lgrafico03;
 
 			first_time_loading_years = true;
 			first_time_loading_zones = true;
 			first_time_loading_periods = true;
-			first_time_loading_regions = true;
-			first_time_loading_puertos = true;
+			first_time_loading_rangos = true;
 
 			GetChart();
 			this.Content = main_page_;
@@ -103,17 +95,8 @@ namespace PesqueraXamarinForms
 			}
 			p_list_period_.SelectedIndex = periodo_index;
 
-			p_list_region_.Items.Clear ();
-			foreach (dtoGrafico02 g02_item in http_loader_.lgrafico02) {
-				p_list_region_.Items.Add (g02_item.descripcionRegion);
-			}
-			p_list_region_.SelectedIndex = region_index;
 
-			p_list_puerto_.Items.Clear ();
-			foreach (dtoGrafico03 g03_item in http_loader_.lgrafico03) {
-				p_list_puerto_.Items.Add (g03_item.descripcionPuerto);
-			}
-			p_list_puerto_.SelectedIndex = puerto_index;
+			p_list_rango_.SelectedIndex = rango_index;
 
 			indicator.SetBinding (ActivityIndicator.IsRunningProperty, "row_chart_already_loading");
 			indicator.SetBinding (ActivityIndicator.IsVisibleProperty, "row_chart_already_loading");
@@ -121,7 +104,7 @@ namespace PesqueraXamarinForms
 			row_chart_already_loading = false;
 		}
 
-		public PescaPlantaBar ()
+		public Gra08GruposRangoBar ()
 		{
 			GetChart();
 			this.Content = main_page_;
@@ -133,29 +116,45 @@ namespace PesqueraXamarinForms
 		}
 
 		async void ShowMyPage(){
-			pmenu_pesquera_.SelectedIndex = 3;
+			pmenu_pesquera_.SelectedIndex = 7;
 			await Navigation.PushAsync( new MyPage() ) ;
 		}
 
-		async void ShowResumenTemporadaPie(){
-			pmenu_pesquera_.SelectedIndex = 3;
-			await Navigation.PushAsync( new ResumenTemporadaPie() ) ;
+		async void ShowGra01ResumenTemporadaPie(){
+			pmenu_pesquera_.SelectedIndex = 7;
+			await Navigation.PushAsync( new Gra01ResumenTemporadaPie() ) ;
 		}
 
-		async void ShowPescaRegionColumn(){
-			pmenu_pesquera_.SelectedIndex = 3;
-			await Navigation.PushAsync( new PescaRegionColumn() ) ;
+		async void ShowGra02PescaRegionColumn(){
+			pmenu_pesquera_.SelectedIndex = 7;
+			await Navigation.PushAsync( new Gra02PescaRegionColumn() ) ;
 		}
 
-		async void ShowPescaPuertoColumn(){
-			pmenu_pesquera_.SelectedIndex = 3;
-			await Navigation.PushAsync( new PescaPuertoColumn() ) ;
+		async void ShowGra03PescaPuertoColumn(){
+			pmenu_pesquera_.SelectedIndex = 7;
+			await Navigation.PushAsync( new Gra03PescaPuertoColumn() ) ;
 		}
 
-		async void ShowPescaDiaColumnSpline(){
-			pmenu_pesquera_.SelectedIndex = 3;
-			await Navigation.PushAsync( new PescaDiaColumnSpline() ) ;
+		async void ShowGra04PescaPlantaBar(){
+			pmenu_pesquera_.SelectedIndex = 7;
+			await Navigation.PushAsync (new Gra04PescaPlantaBar ());
 		}
+
+		async void ShowGra05PescaDiaColumnSpline(){
+			pmenu_pesquera_.SelectedIndex = 7;
+			await Navigation.PushAsync( new Gra05PescaDiaColumnSpline() ) ;
+		}
+
+		async void ShowGra06QuincenaColumnSpline(){
+			pmenu_pesquera_.SelectedIndex = 7;
+			await Navigation.PushAsync (new Gra06QuincenaColumnSpline ());
+		}
+
+		async void ShowGra07GruposMColumn(){
+			pmenu_pesquera_.SelectedIndex = 7;
+			await Navigation.PushAsync (new Gra07GruposMColumn ());
+		}
+
 
 		private async void GetChart()
 		{
@@ -210,22 +209,18 @@ namespace PesqueraXamarinForms
 				Title = menu_labels_[1],
 				VerticalOptions = LayoutOptions.StartAndExpand
 			};
-					
-			/// Picker region
-			p_list_region_ = new Picker
+
+			/// Picker rango
+			p_list_rango_ = new Picker
 			{
 				Title = menu_labels_[3],
 				VerticalOptions = LayoutOptions.StartAndExpand
 			};
-					
-			/// Picker puerto
-			p_list_puerto_ = new Picker
+			foreach (string rangoName in GlobalParameters.LIST_RANGO_PORCENTAGES)
 			{
-				Title = menu_labels_[4],
-				VerticalOptions = LayoutOptions.StartAndExpand
-			};
-
-
+				p_list_rango_.Items.Add(rangoName);
+			}
+			p_list_rango_.SelectedIndex = 0;
 			//////////
 
 
@@ -263,29 +258,18 @@ namespace PesqueraXamarinForms
 				if (p_list_period_.SelectedIndex == -1) {
 					row_bars_.ItemsSource = GetEmptyData();
 				} else {
-					if (first_time_loading_regions == false){
-						LoadRegions (false);
+					if(first_time_loading_rangos == false)  {
+						LoadAllGrafico08 (false);
 					}
-					first_time_loading_regions = false;
+					first_time_loading_rangos = false;
 				}
 			};
 
-			p_list_region_.SelectedIndexChanged += ( sender, args) => {
-				if (p_list_region_.SelectedIndex == -1) {
+			p_list_rango_.SelectedIndexChanged += ( sender, args) => {
+				if (p_list_rango_.SelectedIndex == -1) {
 					row_bars_.ItemsSource = GetEmptyData();
 				} else {
-					if (first_time_loading_puertos == false){
-						LoadPuertos (false);
-					}
-					first_time_loading_puertos = false;
-				}
-			};
-
-			p_list_puerto_.SelectedIndexChanged += ( sender, args) => {
-				if (p_list_puerto_.SelectedIndex == -1) {
-					row_bars_.ItemsSource = GetEmptyData();
-				} else {
-					LoadAllGrafico04 (false);
+					LoadAllGrafico08 (false);
 				}
 			};
 
@@ -348,12 +332,7 @@ namespace PesqueraXamarinForms
 								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
 								Text = menu_labels_[3]
 							},
-							p_list_region_,
-							new Label(){
-								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-								Text = menu_labels_[4]
-							},
-							p_list_puerto_
+							p_list_rango_
 						}
 					},
 					chart
@@ -375,11 +354,10 @@ namespace PesqueraXamarinForms
 
 		private async void LoadZones(){
 			periodo_already_loading = true;
-			region_already_loading = true;
-			puerto_already_loading = true;
+
 			row_chart_already_loading = true;
-			ObservableCollection<ChartDataPoint> g04_data = new ObservableCollection<ChartDataPoint> ();
-			row_bars_.ItemsSource = g04_data;
+			ObservableCollection<ChartDataPoint> g08_data = new ObservableCollection<ChartDataPoint> ();
+			row_bars_.ItemsSource = g08_data;
 
 			int year = int.Parse (p_list_year_.Items.ElementAt (p_list_year_.SelectedIndex));
 			zonaNameList_ = await http_loader_.LoadZonasFromInternet ( year );
@@ -398,11 +376,10 @@ namespace PesqueraXamarinForms
 					return;
 			}
 			periodo_already_loading = true;
-			region_already_loading = true;
-			puerto_already_loading = true;
+
 			row_chart_already_loading = true;
-			ObservableCollection<ChartDataPoint> g04_data = new ObservableCollection<ChartDataPoint> ();
-			row_bars_.ItemsSource = g04_data;
+			ObservableCollection<ChartDataPoint> g08_data = new ObservableCollection<ChartDataPoint> ();
+			row_bars_.ItemsSource = g08_data;
 
 			int anoTempo = int.Parse (p_list_year_.Items.ElementAt (p_list_year_.SelectedIndex));
 			string codigoZona = zonaNameList_ [p_list_zone_.SelectedIndex ].codigoZona;
@@ -414,84 +391,29 @@ namespace PesqueraXamarinForms
 			}
 			p_list_period_.SelectedIndex = 0;
 			periodo_already_loading = false;
-			LoadRegions (true);
+			LoadAllGrafico08 (true);
 		}
 
-		private async void LoadRegions( bool from_load_periodos ){
+		private async void LoadAllGrafico08( bool from_load_periodos ){
 			if (from_load_periodos == false) {
-				if (region_already_loading == true)
-					return;
-			}
-			region_already_loading = true;
-			puerto_already_loading = true;
-			row_chart_already_loading = true;
-			ObservableCollection<ChartDataPoint> g04_data = new ObservableCollection<ChartDataPoint> ();
-			row_bars_.ItemsSource = g04_data;
-
-			int anoTempo = int.Parse (p_list_year_.Items.ElementAt (p_list_year_.SelectedIndex));
-			string codigoZona = zonaNameList_ [p_list_zone_.SelectedIndex].codigoZona;
-			string periodo = p_list_period_.Items.ElementAt (p_list_period_.SelectedIndex);
-
-			g02List_ = await http_loader_.LoadGrafico02FromInternet (anoTempo, codigoZona, periodo);
-			p_list_region_.Items.Clear ();
-			foreach (dtoGrafico02 g02_item in g02List_) {
-				p_list_region_.Items.Add (g02_item.descripcionRegion);
-			}
-			p_list_region_.SelectedIndex = 0;
-			region_already_loading = false;
-			LoadPuertos (true);
-		}
-
-		private async void LoadPuertos( bool from_load_regions ){
-			if (from_load_regions == false) {
-				if ( puerto_already_loading == true)
-					return;
-			}
-			puerto_already_loading = true;
-			row_chart_already_loading = true;
-			ObservableCollection<ChartDataPoint> g04_data = new ObservableCollection<ChartDataPoint> ();
-			row_bars_.ItemsSource = g04_data;
-
-			int anoTempo = int.Parse (p_list_year_.Items.ElementAt (p_list_year_.SelectedIndex));
-			string codigoZona = zonaNameList_ [p_list_zone_.SelectedIndex ].codigoZona;
-			string periodo = p_list_period_.Items.ElementAt (p_list_period_.SelectedIndex ) ;
-			p_list_puerto_.Items.Clear ();
-			if (g02List_.Count > p_list_region_.SelectedIndex && p_list_region_.SelectedIndex >= 0) {
-				string codigoRegion = g02List_ [p_list_region_.SelectedIndex].codigoRegion;
-				g03List_ = await http_loader_.LoadGrafico03FromInternet (anoTempo, codigoZona, periodo, codigoRegion);
-
-				foreach (dtoGrafico03 g03_item in g03List_) {
-					p_list_puerto_.Items.Add (g03_item.descripcionPuerto);
-				}
-			}
-			p_list_puerto_.SelectedIndex = 0;
-			puerto_already_loading = false;
-			LoadAllGrafico04 (true);
-		}
-
-		private async void LoadAllGrafico04( bool from_load_puertos ){
-			if (from_load_puertos == false) {
 				if ( row_chart_already_loading == true)
 					return;
 			}
 			row_chart_already_loading = true;
-			ObservableCollection<ChartDataPoint> g04_data = new ObservableCollection<ChartDataPoint> ();
-			row_bars_.ItemsSource = g04_data;
+			ObservableCollection<ChartDataPoint> g08_data = new ObservableCollection<ChartDataPoint> ();
+			row_bars_.ItemsSource = g08_data;
 
 			int anoTempo = int.Parse (p_list_year_.Items.ElementAt (p_list_year_.SelectedIndex));
 			string codigoZona = zonaNameList_ [p_list_zone_.SelectedIndex ].codigoZona;
 			string periodo = p_list_period_.Items.ElementAt (p_list_period_.SelectedIndex ) ;
-			if (g02List_.Count > p_list_region_.SelectedIndex && p_list_region_.SelectedIndex >= 0) {
-				string codigoRegion = g02List_ [p_list_region_.SelectedIndex].codigoRegion;
-				if (g03List_.Count > p_list_puerto_.SelectedIndex && p_list_puerto_.SelectedIndex >= 0) {
-					string codigoPuerto = g03List_ [p_list_puerto_.SelectedIndex].codigoPuerto;
-					List< dtoGrafico04 > list_g04 = await http_loader_.LoadGrafico04FromInternet (anoTempo, codigoZona, periodo, codigoRegion, codigoPuerto);
-					foreach (dtoGrafico04 g04_item in list_g04) {
-						g04_data.Add ( new ChartDataPoint ( g04_item.descripcionPlanta, g04_item.tmDescarRegion ) );
-					}
-					row_bars_.ItemsSource = g04_data;
-				}
+			string ranPorcen = GlobalParameters.LIST_RANGO_PORCENTAGES [p_list_rango_.SelectedIndex];
+
+			List< dtoGrafico08 > list_g08 = await http_loader_.LoadGrafico08FromInternet (anoTempo, codigoZona, periodo, ranPorcen);
+			foreach (dtoGrafico08 g08_item in list_g08) {
+				g08_data.Add ( new ChartDataPoint ( g08_item.nombreGrupo, g08_item.tmDescarga ) );
 			}
+			row_bars_.ItemsSource = g08_data;
+
 			row_chart_already_loading = false;
 		}
 
@@ -547,19 +469,25 @@ namespace PesqueraXamarinForms
 					switch(p_list_menu.SelectedIndex) 
 					{
 					case 0:
-						ShowResumenTemporadaPie();
+						ShowGra01ResumenTemporadaPie();
 						break;
 					case 1:
-						ShowPescaRegionColumn();
+						ShowGra02PescaRegionColumn();
 						break;
 					case 2:
-						ShowPescaPuertoColumn();
+						ShowGra03PescaPuertoColumn();
+						break;
+					case 3:
+						ShowGra04PescaPlantaBar();
 						break;
 					case 4:
-						ShowPescaDiaColumnSpline();
+						ShowGra05PescaDiaColumnSpline();
 						break;
 					case 5:
-						ShowMyPage();
+						ShowGra06QuincenaColumnSpline();
+						break;
+					case 6:
+						ShowGra07GruposMColumn();
 						break;
 					}
 

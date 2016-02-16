@@ -29,9 +29,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-<<<<<<< HEAD
-	<string>9.0</string>
-=======
 	<string>9.2</string>
 	<key>CFBundleName</key>
 	<string>Pesquera</string>
@@ -44,6 +41,5 @@
 		<string>Icon-Small@2x</string>
 		<string>Icon-Small-40@2x</string>
 	</array>
->>>>>>> 4389ee34cb41767b1c0f6106844452b43d6a25a4
 </dict>
 </plist>
