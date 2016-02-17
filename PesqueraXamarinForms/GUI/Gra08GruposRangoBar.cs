@@ -9,7 +9,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 namespace PesqueraXamarinForms
 {
-	public class Gra08GruposRangoBar : ContentPage, INotifyPropertyChanged
+	public class Gra08GruposRangoBar : GraFather, INotifyPropertyChanged
 	{
 		private bool _isBusy ;
 		public bool row_chart_already_loading
@@ -284,7 +284,7 @@ namespace PesqueraXamarinForms
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				Orientation = StackOrientation.Vertical,
 				Children = {
-					pmenu_pesquera_,
+					//pmenu_pesquera_,
 					indicator,
 					new Label(){
 						Text = title_page_,

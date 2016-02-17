@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 namespace PesqueraXamarinForms
 {
-	public class Gra02PescaRegionColumn : ContentPage, INotifyPropertyChanged
+	public class Gra02PescaRegionColumn : GraFather, INotifyPropertyChanged
 	{
 		private bool _isBusy ;
 		public bool column_chart_already_loading
@@ -57,37 +57,35 @@ namespace PesqueraXamarinForms
 
 		HttpJsonLoader http_loader_ =  new HttpJsonLoader();
 
-		public Gra02PescaRegionColumn(List<dtoAnio> lanios, int anio_index , List<dtoZona> lzonas, 
-			int zona_index , List<dtoPeriodo> lperiodos, int periodo_index){
+		public Gra02PescaRegionColumn(HttpJsonLoader http_loader, int anio_index , 
+			int zona_index , int periodo_index){
 			first_time_loading_years = true;
 			first_time_loading_zones = true;
 			first_time_loading_periods = true;
+			http_loader_ = http_loader;
 
-			http_loader_.lanios = lanios;
-			http_loader_.lzonas = lzonas;
-			http_loader_.lperiodos = lperiodos;
 
 			GetChart();
 			this.Content = main_page_;
 
 
 			p_list_year_.Items.Clear ();
-			foreach (dtoAnio yearName in lanios)
+			foreach (dtoAnio yearName in http_loader_.lanios)
 			{
 				p_list_year_.Items.Add(yearName.anoTempo.ToString());
 			}
 			p_list_year_.SelectedIndex = anio_index;
 
 			p_list_zone_.Items.Clear ();
-			foreach (dtoZona zoneName in lzonas) {
+			foreach (dtoZona zoneName in http_loader_.lzonas) {
 				p_list_zone_.Items.Add (zoneName.descripcionZona);
 			}
 			p_list_zone_.SelectedIndex = zona_index;
 
-			zonaNameList_ = lzonas;
+			zonaNameList_ = http_loader_.lzonas;
 
 			p_list_period_.Items.Clear ();
-			foreach (dtoPeriodo periodoId in lperiodos) {
+			foreach (dtoPeriodo periodoId in http_loader_.lperiodos) {
 				p_list_period_.Items.Add ( periodoId.periodo );
 			}
 			p_list_period_.SelectedIndex = periodo_index;
@@ -120,12 +118,12 @@ namespace PesqueraXamarinForms
 			await Navigation.PushAsync (new Gra01ResumenTemporadaPie ());
 		}
 
-		async void ShowGra03PescaPuertoColumnWithData( int selected_region ){
+		void ShowGra03PescaPuertoColumnWithData( int selected_region ){
 			if (selected_region == -1)
 				return;
 			pmenu_pesquera_.SelectedIndex = 1;
-			await Navigation.PushAsync (new Gra03PescaPuertoColumn (http_loader_, p_list_year_.SelectedIndex, 
-				p_list_zone_.SelectedIndex, p_list_period_.SelectedIndex, selected_region));
+			rootpage_.ShowGra03PescaPuertoColumnWithData(http_loader_, p_list_year_.SelectedIndex, 
+				p_list_zone_.SelectedIndex, p_list_period_.SelectedIndex, selected_region);
 		}
 
 		async void ShowGra03PescaPuertoColumn(){
@@ -262,7 +260,7 @@ namespace PesqueraXamarinForms
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				Orientation = StackOrientation.Vertical,
 				Children = {
-					pmenu_pesquera_,
+					//pmenu_pesquera_,
 					indicator,
 					new Label(){
 						Text = title_page_,

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 namespace PesqueraXamarinForms
 {
-	public partial class LoginPage : ContentPage
+	public partial class LoginPage : ContentPage 
 	{
 		public LoginPage ()
 		{
@@ -28,8 +28,9 @@ namespace PesqueraXamarinForms
 			//var isLoggedIn = App.Current.Properties.ContainsKey("IsLoggedIn")?(bool)App.Current.Properties ["IsLoggedIn"]:false;
 
 			//CrossPieCharts.FormsPlugin.Abstractions.CrossPieChartSample pieChart = new CrossPieCharts.FormsPlugin.Abstractions.CrossPieChartSample ();
-			await Navigation.PushAsync( new Gra01ResumenTemporadaPie());
-			//new NavigationPage( new RootPage());
+			//await Navigation.PushAsync( new Gra01ResumenTemporadaPie());
+
+			await Navigation.PushModalAsync( new RootPage());
 			//await Navigation.PushAsync (pieChart.GetPageWithPieChart ());
 		}
 

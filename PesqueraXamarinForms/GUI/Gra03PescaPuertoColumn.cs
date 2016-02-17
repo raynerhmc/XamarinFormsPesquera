@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 namespace PesqueraXamarinForms
 {
-	public class Gra03PescaPuertoColumn : ContentPage, INotifyPropertyChanged
+	public class Gra03PescaPuertoColumn : GraFather, INotifyPropertyChanged
 	{
 		private bool _isBusy ;
 		public bool column_chart_already_loading
@@ -138,14 +138,13 @@ namespace PesqueraXamarinForms
 		}
 
 
-		async void ShowGra04PescaPlantaBarWithData(int selected_puerto){
+		void ShowGra04PescaPlantaBarWithData(int selected_puerto){
 			if (selected_puerto == -1)
 				return;
 			pmenu_pesquera_.SelectedIndex = 2;
-			await Navigation.PushAsync( new Gra04PescaPlantaBar( http_loader_, p_list_year_.SelectedIndex, 
+			rootpage_.ShowGra04PescaPlantaBarWithData (http_loader_, p_list_year_.SelectedIndex, 
 				p_list_zone_.SelectedIndex, p_list_period_.SelectedIndex, p_list_region_.SelectedIndex, 
-				selected_puerto
-			) ) ;
+				selected_puerto);
 		}
 
 		async void ShowGra04PescaPlantaBar(){
@@ -292,7 +291,7 @@ namespace PesqueraXamarinForms
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				Orientation = StackOrientation.Vertical,
 				Children = {
-					pmenu_pesquera_,
+					//pmenu_pesquera_,
 					indicator,
 					new Label(){
 						Text = title_page_,

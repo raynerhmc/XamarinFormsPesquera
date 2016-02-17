@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 
 namespace PesqueraXamarinForms
 {
-	public class Gra01ResumenTemporadaPie : ContentPage, INotifyPropertyChanged
+	public class Gra01ResumenTemporadaPie : GraFather, INotifyPropertyChanged
 	{
 		private bool _isBusy ;
 		public bool pie_chart_already_loading
@@ -32,6 +32,7 @@ namespace PesqueraXamarinForms
 				PropertyChanged(this, new PropertyChangedEventArgs(propName));
 			}
 		}
+
 		ActivityIndicator indicator = new ActivityIndicator {
 			IsRunning = false,
 			IsVisible = false,
@@ -74,12 +75,10 @@ namespace PesqueraXamarinForms
 			await Navigation.PushAsync( new Gra02PescaRegionColumn() ) ;
 		}
 
-		async void ShowGra02PescaRegionColumnWithData(){
+		void ShowGra02PescaRegionColumnWithData(){
 			pmenu_pesquera_.SelectedIndex = 0;
-
-			await Navigation.PushAsync( new Gra02PescaRegionColumn( http_loader_.lanios, p_list_year_.SelectedIndex, 
-				http_loader_.lzonas, p_list_zone_.SelectedIndex, http_loader_.lperiodos, p_list_period_.SelectedIndex
-			) ) ;
+			rootpage_.ShowGra02PescaRegionColumnWithData (http_loader_, p_list_year_.SelectedIndex, 
+				p_list_zone_.SelectedIndex, p_list_period_.SelectedIndex);
 		}
 
 		async void ShowGra03PescaPuertoColumn(){
@@ -203,7 +202,7 @@ namespace PesqueraXamarinForms
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				Orientation = StackOrientation.Vertical,
 				Children = {
-					pmenu_pesquera_,
+					//pmenu_pesquera_,
 					indicator,
 					new Label(){
 						Text = "AVANCE PESCA POR ZONA",

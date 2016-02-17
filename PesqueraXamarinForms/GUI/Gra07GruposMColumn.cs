@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 namespace PesqueraXamarinForms
 {
-	public class Gra07GruposMColumn : ContentPage, INotifyPropertyChanged
+	public class Gra07GruposMColumn : GraFather, INotifyPropertyChanged
 	{
 		private bool _isBusy ;
 		public bool column_chart_already_loading
@@ -110,12 +110,12 @@ namespace PesqueraXamarinForms
 			await Navigation.PushAsync (new Gra08GruposRangoBar ());
 		}
 
-		async void ShowGra08GruposRangoBarWithData( int selected_rango ){
+		void ShowGra08GruposRangoBarWithData( int selected_rango ){
 			if (selected_rango == -1)
 				return;
 			pmenu_pesquera_.SelectedIndex = 6;
-			await Navigation.PushAsync (new Gra08GruposRangoBar (http_loader_, p_list_year_.SelectedIndex, 
-				p_list_zone_.SelectedIndex, p_list_period_.SelectedIndex, selected_rango));
+			rootpage_.ShowGra08GruposRangoBarWithData (http_loader_, p_list_year_.SelectedIndex, 
+				p_list_zone_.SelectedIndex, p_list_period_.SelectedIndex, selected_rango);
 		}
 
 		private async void GetChart()
@@ -244,7 +244,7 @@ namespace PesqueraXamarinForms
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				Orientation = StackOrientation.Vertical,
 				Children = {
-					pmenu_pesquera_,
+					//pmenu_pesquera_,
 					indicator,
 					new Label(){
 						Text = title_page_,

@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 namespace PesqueraXamarinForms
 {
-	public class Gra04PescaPlantaBar : ContentPage, INotifyPropertyChanged
+	public class Gra04PescaPlantaBar : GraFather, INotifyPropertyChanged
 	{
 		private bool _isBusy ;
 		public bool row_chart_already_loading
@@ -315,7 +315,7 @@ namespace PesqueraXamarinForms
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				Orientation = StackOrientation.Vertical,
 				Children = {
-					pmenu_pesquera_,
+					//pmenu_pesquera_,
 					indicator,
 					new Label(){
 						Text = title_page_,

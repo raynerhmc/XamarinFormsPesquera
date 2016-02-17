@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 
 namespace PesqueraXamarinForms 
 {
-	public class Gra06QuincenaColumnSpline : ContentPage, INotifyPropertyChanged
+	public class Gra06QuincenaColumnSpline : GraFather, INotifyPropertyChanged
 	{
 		private bool _isBusy ;
 		public bool column_spline_chart_already_loading
@@ -217,7 +217,7 @@ namespace PesqueraXamarinForms
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				Orientation = StackOrientation.Vertical,
 				Children = {
-					pmenu_pesquera_,
+					//pmenu_pesquera_,
 					indicator,
 					new Label(){
 						Text = title_page_,
