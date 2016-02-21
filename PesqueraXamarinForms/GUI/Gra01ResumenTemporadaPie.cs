@@ -38,7 +38,6 @@ namespace PesqueraXamarinForms
 			IsVisible = false,
 			Color = Color.Blue
 		};
-		private Picker pmenu_pesquera_;
 		private Picker p_list_period_;
 		private Picker p_list_year_;
 		private Picker p_list_zone_;
@@ -64,51 +63,11 @@ namespace PesqueraXamarinForms
 
 
 		}
-
-		async void ShowMyPage(){
-			pmenu_pesquera_.SelectedIndex = 0;
-			await Navigation.PushAsync( new MyPage() ) ;
-		}
 			
-		async void ShowGra02PescaRegionColumn(){
-			pmenu_pesquera_.SelectedIndex = 0;
-			await Navigation.PushAsync( new Gra02PescaRegionColumn() ) ;
-		}
-
 		void ShowGra02PescaRegionColumnWithData(){
-			pmenu_pesquera_.SelectedIndex = 0;
+			
 			rootpage_.ShowGra02PescaRegionColumnWithData (http_loader_, p_list_year_.SelectedIndex, 
 				p_list_zone_.SelectedIndex, p_list_period_.SelectedIndex);
-		}
-
-		async void ShowGra03PescaPuertoColumn(){
-			pmenu_pesquera_.SelectedIndex = 0;
-			await Navigation.PushAsync( new Gra03PescaPuertoColumn() ) ;
-		}
-
-		async void ShowGra04PescaPlantaBar(){
-			pmenu_pesquera_.SelectedIndex = 0;
-			await Navigation.PushAsync( new Gra04PescaPlantaBar() ) ;
-		}
-
-		async void ShowGra05PescaDiaColumnSpline(){
-			pmenu_pesquera_.SelectedIndex = 0;
-			await Navigation.PushAsync( new Gra05PescaDiaColumnSpline() ) ;
-		}
-
-		async void ShowGra06QuincenaColumnSpline(){
-			pmenu_pesquera_.SelectedIndex = 0;
-			await Navigation.PushAsync (new Gra06QuincenaColumnSpline ());
-		}
-
-		async void ShowGra07GruposMColumn(){
-			pmenu_pesquera_.SelectedIndex = 0;
-			await Navigation.PushAsync (new Gra07GruposMColumn ());
-		}
-
-		async void ShowGra08GruposRangoBar(){
-			pmenu_pesquera_.SelectedIndex = 0;
-			await Navigation.PushAsync (new Gra08GruposRangoBar ());
 		}
 
 		private async void GetChart()
@@ -139,7 +98,7 @@ namespace PesqueraXamarinForms
 
 			chart.VerticalOptions = LayoutOptions.FillAndExpand;
 			chart.HorizontalOptions = LayoutOptions.FillAndExpand;
-
+			chart.ChartBehaviors.Add(new ChartZoomPanBehavior(){ EnablePanning = true, EnableZooming = true}) ;
 
 			////////////// Picker#
 			/// 
@@ -190,9 +149,6 @@ namespace PesqueraXamarinForms
 				}
 			};
 
-
-			pmenu_pesquera_ = GetMenuPesquera ();
-			pmenu_pesquera_.VerticalOptions = LayoutOptions.Start;
 
 		
 			StackLayout main_layout = new StackLayout (){
@@ -324,68 +280,7 @@ namespace PesqueraXamarinForms
 			pie_.ItemsSource = g01_data;
 			pie_chart_already_loading = false;
 		}
-
-
-		private  Picker GetMenuPesquera(){
-			Picker p_list_menu = new Picker
-			{
-				Title = "Cuadros",
-				VerticalOptions = LayoutOptions.StartAndExpand
-			};
-
-			String [] menuNameList = {"Avance pesca por zona",
-				"Avance pesca por región",
-				"Avance pesca por puerto",
-				"Avance pesca por planta",
-				"Avance pesca / descargas por día",
-				"Avance pesca / descargas quincena",
-				"Avance por grupos",
-				"Avance por grupos en [Rango %]",
-			};
-			foreach (string menuName in menuNameList)
-			{
-				p_list_menu.Items.Add(menuName);
-			}
-			p_list_menu.SelectedIndex = 0;
-
-			// WHEN p_list_menu is selected
-			p_list_menu.SelectedIndexChanged += (sender, args) =>
-			{
-				if (p_list_menu.SelectedIndex == -1)
-				{
-				}
-				else
-				{
-					switch(p_list_menu.SelectedIndex) 
-					{
-					case 1:
-						ShowGra02PescaRegionColumn();
-						break;
-					case 2:
-						ShowGra03PescaPuertoColumn();
-						break;
-					case 3:
-						ShowGra04PescaPlantaBar();
-						break;
-					case 4:
-						ShowGra05PescaDiaColumnSpline();
-						break;
-					case 5:
-						ShowGra06QuincenaColumnSpline();
-						break;
-					case 6:
-						ShowGra07GruposMColumn();
-						break;
-					case 7:
-						ShowGra08GruposRangoBar();
-						break;
-					}
-
-
-				}
-			};
-			return p_list_menu;
-		}
+			
 	}
 }
 

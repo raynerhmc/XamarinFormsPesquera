@@ -55,6 +55,11 @@ namespace PesqueraXamarinForms
 				IconSource = "icon-Small.png",
 				TargetType = typeof(Gra08GruposRangoBar)
 			});
+			this.Add (new MenuItem () {
+				Title = "Logout",
+				IconSource = "icon-Small.png",
+				TargetType = null
+			});
 		}
 	}
 }

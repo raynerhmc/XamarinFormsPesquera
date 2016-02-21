@@ -26,6 +26,11 @@ namespace PesqueraXamarinForms
 			if (menu == null)
 				return;
 
+			if (menu.TargetType == null) {
+				Navigation.PopModalAsync ();
+				return;
+			}
+
 			GraFather displayPage = (GraFather)Activator.CreateInstance (menu.TargetType);
 			displayPage.SetRootPage (this);
 

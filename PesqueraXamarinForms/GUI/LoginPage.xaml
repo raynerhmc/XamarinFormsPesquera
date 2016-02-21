@@ -2,6 +2,7 @@
 <ContentPage xmlns:chart="clr-namesagepace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
 			 xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PesqueraXamarinForms;assembly=PesqueraXamarinForms"
              x:Class="PesqueraXamarinForms.LoginPage"
              BackgroundColor="Maroon">
      <ContentPage.Padding>
@@ -16,11 +17,17 @@
                      Orientation="Vertical"
                      Spacing="15">
             <Image Source="logo_mp.png" />
-            <Label Text="Información Descarga Pesca" TextColor="White"/>
-            <Entry x:Name="eUserName" Placeholder="usuário" />
-            <Entry x:Name="eUserPassword" Placeholder="contraseña" IsPassword="true" />
+            <Label Text="Información Descarga Pesca" TextColor="White" Font="18"/>
+            <local:NoHelperEntry x:Name="eUserName" Placeholder="usuário" />
+            <local:NoHelperEntry x:Name="eUserPassword" Placeholder="contraseña" IsPassword="true" />
+            <StackLayout VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     Orientation="Horizontal"
+                     Spacing="15">
+                     <Label Text="Guardar Credenciales:" TextColor="White" Font="13"/>
+                     <Switch x:Name="sSaveLogin" />
+            </StackLayout>
             <Button x:Name="bEnterLogin" Text="    Entrar    "  BorderColor="Aqua" BackgroundColor="Silver" TextColor="Teal" Clicked="OnSignIn" HorizontalOptions="Center" />
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

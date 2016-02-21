@@ -9,6 +9,13 @@ namespace PesqueraXamarinForms
 		}
 		public static int LABEL_TEXT_SIZE_15_ = 13;
 		public static int MAIN_LAYOUT_PADDING_ = 10;
+
+		public static int LOGIN_NUMBER_OF_TRIES = 3;
+
+		public static string LOGIN_USERNAME_KEY = "LOGIN_USERNAME";
+		public static string LOGIN_PASSWORD_KEY = "LOGIN_PASSWORD";
+		public static string LOGIN_SAVELOGIN_KEY = "LOGIN_SAVE_LOGIN";
+
 		public static string API_URL = "http://apptemporadapesca.produce.gob.pe/api/";
 		public static string API_ZONA = "Zona";
 		public static string API_ANIO = "Anio";
