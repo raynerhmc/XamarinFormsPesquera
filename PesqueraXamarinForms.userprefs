@@ -1,15 +1,27 @@
 ﻿<Properties StartupItem="iOS/PesqueraXamarinForms.iOS.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6s.9.2" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PesqueraXamarinForms/GUI/LoginPage.xaml.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6.9.2" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="PesqueraXamarinForms/MenuManager/MenuPage.cs">
     <Files>
-      <File FileName="PesqueraXamarinForms/GUI/LoginPage.xaml.cs" Line="20" Column="4" />
-      <File FileName="PesqueraXamarinForms/PesqueraXamarinForms.cs" Line="13" Column="1" />
-      <File FileName="PesqueraXamarinForms/GUI/LoginPage.xaml" Line="23" Column="43" />
-      <File FileName="iOS/AppDelegate.cs" Line="32" Column="1" />
-      <File FileName="PesqueraXamarinForms/obj/Debug/LoginPage.xaml.g.cs" Line="26" Column="24" />
-      <File FileName="PesqueraXamarinForms/obj/Debug/MyPage.xaml.g.cs" Line="23" Column="24" />
-      <File FileName="iOS/Main.cs" Line="17" Column="1" />
+      <File FileName="PesqueraXamarinForms/GUI/LoginPage.xaml.cs" Line="8" Column="3" />
+      <File FileName="PesqueraXamarinForms/PesqueraXamarinForms.cs" Line="1" Column="1" />
+      <File FileName="PesqueraXamarinForms/GUI/LoginPage.xaml" Line="1" Column="1" />
+      <File FileName="iOS/AppDelegate.cs" Line="1" Column="1" />
+      <File FileName="PesqueraXamarinForms/obj/Debug/LoginPage.xaml.g.cs" Line="1" Column="1" />
+      <File FileName="iOS/Main.cs" Line="1" Column="1" />
+      <File FileName="iOS/Info.plist" />
+      <File FileName="PesqueraXamarinForms/GUI/Gra01ResumenTemporadaPie.cs" Line="1" Column="1" />
+      <File FileName="PesqueraXamarinForms/MenuManager/MenuPage.cs" Line="17" Column="31" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PesqueraXamarinForms" expanded="True" selected="True">
+            <Node name="PesqueraXamarinForms" expanded="True" />
+            <Node name="PesqueraXamarinForms.iOS" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>

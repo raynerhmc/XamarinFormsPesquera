@@ -11,7 +11,7 @@ namespace PesqueraXamarinForms
 		public MenuPage ()
 		{
 			Icon = "settings.png";
-			Title = "menu"; // The Title property must be set.
+			Title = "Gráficos"; // The Title property must be set.
 			BackgroundColor = Color.FromHex ("333333");
 
 			Menu = new MenuListView ();
@@ -20,7 +20,7 @@ namespace PesqueraXamarinForms
 				Padding = new Thickness (10, 36, 0, 5),
 				Content = new Label {
 					TextColor = Color.FromHex ("AAAAAA"),
-					Text = "MENU", 
+					Text = "Gráficos", 
 				}
 			};
 
