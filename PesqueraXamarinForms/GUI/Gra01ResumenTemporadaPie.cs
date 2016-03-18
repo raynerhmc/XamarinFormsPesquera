@@ -14,6 +14,12 @@ namespace PesqueraXamarinForms
 	public class Gra01ResumenTemporadaPie : GraFather, INotifyPropertyChanged
 	{
 		private bool _isBusy ;
+
+
+		private Label labelTemporada;
+		private Label labelExploratoria;
+		private Label labelSaldo;
+
 		public bool pie_chart_already_loading
 		{
 			get { return _isBusy; }
@@ -166,10 +172,28 @@ namespace PesqueraXamarinForms
 					pie_.ItemsSource = datas;
 				} else {
 					LoadGrafico01 (false);
+
 				}
 			};
 
-
+			labelExploratoria = new Label (){
+				Text = "0",
+				FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
+				VerticalOptions = LayoutOptions.Start,
+				HorizontalOptions = LayoutOptions.Start
+			};
+			labelTemporada = new Label (){
+				Text = "0",
+				FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
+				VerticalOptions = LayoutOptions.Start,
+				HorizontalOptions = LayoutOptions.Center
+			};
+			labelSaldo = new Label (){
+				Text = "0",
+				FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
+				VerticalOptions = LayoutOptions.Start,
+				HorizontalOptions = LayoutOptions.End
+			};
 		
 			StackLayout main_layout = new StackLayout (){
 				Padding = GlobalParameters.MAIN_LAYOUT_PADDING_,
@@ -219,7 +243,66 @@ namespace PesqueraXamarinForms
 							p_list_period_
 						}
 					},
-					chart
+					chart,
+					new StackLayout () {
+						Spacing = 20,
+						VerticalOptions = LayoutOptions.Center,
+						HorizontalOptions = LayoutOptions.CenterAndExpand,
+						Orientation = StackOrientation.Horizontal,
+						Children = {
+							new StackLayout () {
+								Spacing = 0,
+								VerticalOptions = LayoutOptions.Center,
+								HorizontalOptions = LayoutOptions.StartAndExpand,
+								Orientation = StackOrientation.Vertical,
+								Children = {
+									new Label () {
+										Text = "Exploratoria: ",
+										FontAttributes = FontAttributes.Bold,
+										FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
+										VerticalOptions = LayoutOptions.Center,
+										HorizontalOptions = LayoutOptions.Start,
+										TextColor = GlobalParameters.COLORS_GRAPHIC01[0]
+									},
+									labelExploratoria
+								}
+							},
+							new StackLayout () {
+								Spacing = 0,
+								VerticalOptions = LayoutOptions.Center,
+								HorizontalOptions = LayoutOptions.CenterAndExpand,
+								Orientation = StackOrientation.Vertical,
+								Children = {
+									new Label () {
+										Text = "Temporada: ",
+										FontAttributes = FontAttributes.Bold,
+										FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
+										VerticalOptions = LayoutOptions.Center,
+										HorizontalOptions = LayoutOptions.Start,
+										TextColor = GlobalParameters.COLORS_GRAPHIC01[1]
+									},
+									labelTemporada
+								}
+							},
+							new StackLayout () {
+								Spacing = 0,
+								VerticalOptions = LayoutOptions.Center,
+								HorizontalOptions = LayoutOptions.EndAndExpand,
+								Orientation = StackOrientation.Vertical,
+								Children = {
+									new Label () {
+										Text = "Saldo: ",
+										FontAttributes = FontAttributes.Bold,
+										FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
+										VerticalOptions = LayoutOptions.Center,
+										HorizontalOptions = LayoutOptions.EndAndExpand,
+										TextColor = GlobalParameters.COLORS_GRAPHIC01[2]
+									},
+									labelSaldo
+								}
+							},
+						}
+					}
 				}
 			};
 			main_page_ = main_layout;
@@ -302,6 +385,12 @@ namespace PesqueraXamarinForms
 			} 
 			pie_.ItemsSource = g01_data;
 			pie_chart_already_loading = false;
+
+			//-----------
+
+			labelExploratoria.Text = g01.tmExploratoria.ToString ();
+			labelTemporada.Text = g01.tmTemporada.ToString ();
+			labelSaldo.Text = g01.cuotaSaldo.ToString ();
 		}
 			
 	}
