@@ -92,6 +92,7 @@ namespace PesqueraXamarinForms
 				StartAngle = GlobalParameters.START_ANGLE_PIE_SERIE,
 				EndAngle = GlobalParameters.END_ANGLE_PIE_SERIE,
 				ExplodeIndex = 1,
+				//EnableSmartLabels = true
 
 			};
 
@@ -114,11 +115,13 @@ namespace PesqueraXamarinForms
 			pie_.EnableDataPointSelection = true;
 
 
-			chart.Series.Add(pie_);
-
+			chart.ChartBehaviors.Add(new ChartZoomPanBehavior(){ EnablePanning = true, EnableZooming = true}) ;
 			chart.VerticalOptions = LayoutOptions.FillAndExpand;
 			chart.HorizontalOptions = LayoutOptions.FillAndExpand;
-			chart.ChartBehaviors.Add(new ChartZoomPanBehavior(){ EnablePanning = true, EnableZooming = true}) ;
+
+			chart.Series.Add(pie_);
+
+
 
 			////////////// Picker#
 			/// 
@@ -382,15 +385,21 @@ namespace PesqueraXamarinForms
 				g01_data.Add (new ChartDataPoint (GlobalParameters.GRAFICO_01_EXPLORATORIA, g01.tmExploratoria));
 				g01_data.Add (new ChartDataPoint (GlobalParameters.GRAFICO_01_TEMPORADA, g01.tmTemporada));
 				g01_data.Add (new ChartDataPoint (GlobalParameters.GRAFICO_01_SALDO, g01.cuotaSaldo));
-			} 
+
+				labelExploratoria.Text = g01.tmExploratoria.ToString ();
+				labelTemporada.Text = g01.tmTemporada.ToString ();
+				labelSaldo.Text = g01.cuotaSaldo.ToString ();
+			} else {
+				labelExploratoria.Text = "0";
+				labelTemporada.Text = "0";
+				labelSaldo.Text = "0";
+			}
 			pie_.ItemsSource = g01_data;
 			pie_chart_already_loading = false;
 
 			//-----------
 
-			labelExploratoria.Text = g01.tmExploratoria.ToString ();
-			labelTemporada.Text = g01.tmTemporada.ToString ();
-			labelSaldo.Text = g01.cuotaSaldo.ToString ();
+
 		}
 			
 	}

@@ -9,6 +9,7 @@ using System.Threading;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 
 namespace PesqueraXamarinForms
@@ -92,7 +93,7 @@ namespace PesqueraXamarinForms
 			string url_grafico01 = GlobalParameters.API_URL + GlobalParameters.API_GRAFICO_01;
 			url_grafico01 += "?" + GlobalParameters.PARAM_HTTP_YEAR + "=" + anoTempo.ToString ();
 			url_grafico01 += "&" + GlobalParameters.PARAM_HTTP_ZONA + "=" + codigoZona;
-			url_grafico01 += "&" + GlobalParameters.PARAM_HTTP_PERIODO + "=" + periodo;
+			url_grafico01 += "&" + GlobalParameters.PARAM_HTTP_PERIODO + "=" + periodo;	
 			HttpClient client = new HttpClient();
 			client.BaseAddress = new Uri(url_grafico01);
 
@@ -111,7 +112,7 @@ namespace PesqueraXamarinForms
 			string url_grafico02 = GlobalParameters.API_URL + GlobalParameters.API_GRAFICO_02;
 			url_grafico02 += "?" + GlobalParameters.PARAM_HTTP_YEAR + "=" + anoTempo.ToString ();
 			url_grafico02 += "&" + GlobalParameters.PARAM_HTTP_ZONA + "=" + codigoZona;
-			url_grafico02 += "&" + GlobalParameters.PARAM_HTTP_PERIODO + "=" + periodo;
+			url_grafico02 += "&" + GlobalParameters.PARAM_HTTP_PERIODO + "=" + periodo;   
 			HttpClient client = new HttpClient();
 			client.BaseAddress = new Uri(url_grafico02);
 
