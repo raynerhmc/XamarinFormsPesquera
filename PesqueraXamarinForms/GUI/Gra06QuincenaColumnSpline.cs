@@ -75,12 +75,12 @@ namespace PesqueraXamarinForms
 
 			ChartDataMarker col_dataMarker = new ChartDataMarker() { ShowLabel = true };
 			col_dataMarker.LabelStyle.Font = Font.SystemFontOfSize(10);
-			col_dataMarker.LabelStyle.BackgroundColor = Color.White;
+			col_dataMarker.LabelStyle.BackgroundColor = Color.Transparent;
 			col_dataMarker.LabelStyle.TextColor = Color.Black;
 
 			ChartDataMarker spline_dataMarker = new ChartDataMarker() { ShowLabel = true };
 			spline_dataMarker.LabelStyle.Font = Font.SystemFontOfSize(10);
-			spline_dataMarker.LabelStyle.BackgroundColor = Color.White;
+			spline_dataMarker.LabelStyle.BackgroundColor = Color.Transparent;
 			spline_dataMarker.LabelStyle.TextColor = Color.Purple;
 
 			col_bars_ = new ColumnSeries () {
@@ -99,6 +99,10 @@ namespace PesqueraXamarinForms
 			};
 			col_splines_.DataMarker = spline_dataMarker;
 
+			//Appearance
+			col_bars_.ColorModel.Palette = ChartColorPalette.Custom;
+			col_bars_.ColorModel.CustomBrushes = GlobalParameters.COLORS_GRAPHIC06;
+
 			chart.Series.Add (col_bars_);
 			chart.Series.Add (col_splines_);
 
@@ -112,21 +116,26 @@ namespace PesqueraXamarinForms
 			p_list_period_ = new Picker
 			{
 				Title = menu_labels_[2],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
+				WidthRequest = GlobalParameters.WIDTH_PICKER_PERIODO
 			};
 
 			/// Picker Year
 			p_list_year_ = new Picker
 			{
 				Title = menu_labels_[0],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
 			};
 
 			/// Picker zona
 			p_list_zone_ = new Picker
 			{
 				Title = menu_labels_[1],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
+				WidthRequest = GlobalParameters.WIDTH_PICKER_ZONE
 			};
 					
 
@@ -192,7 +201,8 @@ namespace PesqueraXamarinForms
 						Children = {
 							new Label(){
 								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-								Text = menu_labels_[0]
+								Text = menu_labels_[0],
+								VerticalOptions = LayoutOptions.Center
 							},
 							p_list_year_,
 
@@ -204,14 +214,16 @@ namespace PesqueraXamarinForms
 								Children = {
 									new Label(){
 										FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-										Text = menu_labels_[1]
+										Text = menu_labels_[1],
+										VerticalOptions = LayoutOptions.Center
 									},
 									p_list_zone_
 								}
 							},
 							new Label(){
 								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-								Text = menu_labels_[2]
+								Text = menu_labels_[2],
+								VerticalOptions = LayoutOptions.Center
 							},
 							p_list_period_
 						}
@@ -300,8 +312,8 @@ namespace PesqueraXamarinForms
 
 			List< dtoGrafico06> list_g06 = await http_loader_.LoadGrafico06FromInternet (anoTempo, codigoZona, periodo);
 			foreach (dtoGrafico06 g06_item in list_g06) {
-				g06_data_col.Add( new ChartDataPoint ( g06_item.codigoMes + "-" + g06_item.quincena.ToString(), g06_item.tmDescarga ) );
-				g06_data_spline.Add (new ChartDataPoint (g06_item.codigoMes + "-" + g06_item.quincena.ToString(), g06_item.nEP));
+				g06_data_col.Add( new ChartDataPoint ( g06_item.codigoMes + "-" + g06_item.quincena.ToString(), (int)g06_item.tmDescarga ) );
+				g06_data_spline.Add (new ChartDataPoint (g06_item.codigoMes + "-" + g06_item.quincena.ToString(), (int)g06_item.nEP));
 			}
 			col_bars_.ItemsSource = g06_data_col;
 			col_splines_.ItemsSource = g06_data_spline;

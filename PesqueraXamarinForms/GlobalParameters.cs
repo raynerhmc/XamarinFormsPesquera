@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace PesqueraXamarinForms
 {
@@ -7,7 +9,7 @@ namespace PesqueraXamarinForms
 		public GlobalParameters ()
 		{
 		}
-		public static int LABEL_TEXT_SIZE_15_ = 13;
+		public static int LABEL_TEXT_SIZE_15_ = 12;
 		public static int MAIN_LAYOUT_PADDING_ = 10;
 
 		public static int LOGIN_NUMBER_OF_TRIES = 3;
@@ -79,7 +81,45 @@ namespace PesqueraXamarinForms
 		public static string[] LIST_PUERTOS = { "Carquin", "Chancay", "Supe", "Vegueta" };
 
 		/////////////// UNTIL HERE ///////////////
+		/// 
+		/// Lista de Colores que teine cada gràfica
 
+		public static List<Color> COLORS_GRAPHIC01 = new List<Color>(){Color.Blue, Color.FromHex("#FF9800"), Color.Silver };
+
+		public static List<Color> COLORS_GRAPHIC02 = new List<Color> (){ Color.Blue };
+
+		public static List<Color> COLORS_GRAPHIC03 = new List<Color> (){ Color.Blue };
+
+		public static List<Color> COLORS_GRAPHIC04 = new List<Color> (){ Color.Blue };
+
+		public static List<Color> COLORS_GRAPHIC05 = new List<Color> (){ Color.Blue };
+
+		public static List<Color> COLORS_GRAPHIC06 = new List<Color> (){ Color.Blue };
+
+		public static List<Color> COLORS_GRAPHIC07 = new List<Color> (){ Color.Blue, Color.Green, Color.Yellow, Color.FromHex("#FF9800"),Color.FromHex("#EF5350")};
+
+		public static List<Color> COLORS_GRAPHIC08 = new List<Color> (){ Color.Blue };
+
+		/// Tamaño de los titulos de los Picker
+
+		public static float SCALE_PICKER = 0.8f;
+
+		public static float WIDTH_PICKER_ANIO = 60.0f;
+
+		public static float WIDTH_PICKER_ZONE = 70.0f;
+
+		public static float WIDTH_PICKER_PERIODO = 45.0f;
+
+		public static float WIDTH_PICKER_REGION = 120.0f;
+
+		public static float WIDTH_PICKER_RANGO = 100.0f;
+
+		/// START ANGLE PIE SERIES 
+
+		public static int START_ANGLE_PIE_SERIE = 175;
+		public static int END_ANGLE_PIE_SERIE = 360 + START_ANGLE_PIE_SERIE;
+
+		public static int LEGEND_TEXT_SIZE_SERIES_ = 12;
 	}
 }
 
