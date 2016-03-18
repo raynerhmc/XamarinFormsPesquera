@@ -80,8 +80,11 @@ namespace PesqueraXamarinForms
 		{
 
 			SfChart chart = new SfChart() { Legend = new ChartLegend(){
-					DockPosition = LegendPlacement.Bottom
+					DockPosition = LegendPlacement.Bottom,
+					IsIconVisible = false,
 				} };
+			chart.Legend.LabelStyle.Font = Font.SystemFontOfSize(GlobalParameters.LEGEND_TEXT_SIZE_SERIES_, FontAttributes.None);
+
 			chart.PrimaryAxis = new CategoryAxis() { LabelPlacement = LabelPlacement.BetweenTicks };
 
 			chart.SecondaryAxis = new NumericalAxis();
@@ -89,16 +92,9 @@ namespace PesqueraXamarinForms
 
 			ChartDataMarker dataMarker = new ChartDataMarker() { ShowLabel = true , ShowMarker = true, LabelContent = LabelContent.YValue };
 			dataMarker.LabelStyle.Font = Font.SystemFontOfSize(11);
-			dataMarker.LabelStyle.BackgroundColor = Color.White;
+			dataMarker.LabelStyle.BackgroundColor = Color.Transparent;
 			dataMarker.LabelStyle.TextColor = Color.Black;
 
-			List<Color> colors = new List<Color>(){
-				Color.Blue,
-				Color.Green,
-				Color.Yellow, 
-				Color.Teal,
-				Color.Red
-			};
 
 			col_bars1_ = new ColumnSeries (){
 				Label = "Rango de % de avance de grupos",
@@ -109,7 +105,7 @@ namespace PesqueraXamarinForms
 
 
 			col_bars1_.ColorModel.Palette = ChartColorPalette.Custom;
-			col_bars1_.ColorModel.CustomBrushes = colors;
+			col_bars1_.ColorModel.CustomBrushes = GlobalParameters.COLORS_GRAPHIC07;
 
 			col_bars1_.DataMarker = dataMarker;
 			col_bars1_.EnableDataPointSelection = true;
@@ -129,7 +125,9 @@ namespace PesqueraXamarinForms
 			p_list_period_ = new Picker
 			{
 				Title = menu_labels_[2],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
+				WidthRequest = GlobalParameters.WIDTH_PICKER_PERIODO
 			};
 
 
@@ -137,7 +135,8 @@ namespace PesqueraXamarinForms
 			p_list_year_ = new Picker
 			{
 				Title = menu_labels_[0],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
 			};
 
 
@@ -145,7 +144,9 @@ namespace PesqueraXamarinForms
 			p_list_zone_ = new Picker
 			{
 				Title = menu_labels_[1],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
+				WidthRequest = GlobalParameters.WIDTH_PICKER_ZONE
 			};
 
 
@@ -214,7 +215,8 @@ namespace PesqueraXamarinForms
 						Children = {
 							new Label(){
 								Text = menu_labels_[0],
-								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_
+								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
+								VerticalOptions = LayoutOptions.Center
 							},
 							p_list_year_,
 
@@ -226,14 +228,16 @@ namespace PesqueraXamarinForms
 								Children = {
 									new Label(){
 										Text = menu_labels_[1],
-										FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_
+										FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
+										VerticalOptions = LayoutOptions.Center
 									},
 									p_list_zone_
 								}
 							},
 							new Label(){
 								Text = menu_labels_[2],
-								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_
+								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
+								VerticalOptions = LayoutOptions.Center
 							},
 							p_list_period_
 						}

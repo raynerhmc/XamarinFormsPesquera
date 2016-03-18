@@ -42,7 +42,8 @@ namespace PesqueraXamarinForms
 		private Picker p_list_year_;
 		private Picker p_list_zone_;
 		private List<dtoZona> zonaNameList_;
-		private PieSeries pie_;
+		//private PieSeries pie_;
+		private DoughnutSeries pie_;
 
 		private bool periodo_already_loading = false;
 
@@ -76,14 +77,26 @@ namespace PesqueraXamarinForms
 			SfChart chart = new SfChart() { Legend = new ChartLegend(){
 					DockPosition = LegendPlacement.Bottom
 				} };
+			chart.Legend.LabelStyle.Font = Font.SystemFontOfSize(GlobalParameters.LEGEND_TEXT_SIZE_SERIES_, FontAttributes.None);
 
 			ObservableCollection<ChartDataPoint> datas = new ObservableCollection<ChartDataPoint>();
 
-			pie_ = new PieSeries();
+			//pie_ = new PieSeries();
+			pie_ = new DoughnutSeries(){
+				StartAngle = GlobalParameters.START_ANGLE_PIE_SERIE,
+				EndAngle = GlobalParameters.END_ANGLE_PIE_SERIE,
+				ExplodeIndex = 1,
+
+			};
 
 			//pie_.ExplodeOnTouch = true;
 			pie_.ItemsSource = datas;
 			pie_.LegendIcon = ChartLegendIcon.Diamond;
+
+
+			//Appearance
+			pie_.ColorModel.Palette = ChartColorPalette.Custom;
+			pie_.ColorModel.CustomBrushes = GlobalParameters.COLORS_GRAPHIC01;
 
 			pie_.DataMarkerPosition = CircularSeriesDataMarkerPosition.OutsideExtended;
 			pie_.ConnectorLineType = ConnectorLineType.Line;
@@ -93,6 +106,7 @@ namespace PesqueraXamarinForms
 			pie_.DataMarker.LabelContent = LabelContent.Percentage;
 			pie_.DataMarker.LabelStyle.Font = Font.SystemFontOfSize(15);
 			pie_.EnableDataPointSelection = true;
+
 
 			chart.Series.Add(pie_);
 
@@ -106,21 +120,27 @@ namespace PesqueraXamarinForms
 			p_list_period_ = new Picker
 			{
 				Title = "Periodo",
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
+				WidthRequest = GlobalParameters.WIDTH_PICKER_PERIODO
 			};
 
 			/// Picker Anio
 			p_list_year_ = new Picker
 			{
 				Title = "Año",
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
+				WidthRequest = GlobalParameters.WIDTH_PICKER_ANIO
 			};
 					
 			/// Picker zona
 			p_list_zone_ = new Picker
 			{
 				Title = "Zona",
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
+				WidthRequest = GlobalParameters.WIDTH_PICKER_ZONE
 			};
 					
 
@@ -172,7 +192,8 @@ namespace PesqueraXamarinForms
 						Children = {
 							new Label(){
 								Text = "Año: ",
-								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_
+								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
+								VerticalOptions = LayoutOptions.Center
 							},
 							p_list_year_,
 
@@ -184,14 +205,16 @@ namespace PesqueraXamarinForms
 								Children = {
 									new Label(){
 										Text = "Zona: ",
-										FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_
+										FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
+										VerticalOptions = LayoutOptions.Center
 									},
 									p_list_zone_
 								}
 							},
 							new Label(){
 								Text = "Periodo: ",
-								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_	
+								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
+								VerticalOptions = LayoutOptions.Center	
 							},
 							p_list_period_
 						}

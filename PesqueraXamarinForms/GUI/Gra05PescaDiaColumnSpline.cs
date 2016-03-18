@@ -78,12 +78,12 @@ namespace PesqueraXamarinForms
 
 			ChartDataMarker col_dataMarker = new ChartDataMarker() { ShowLabel = true };
 			col_dataMarker.LabelStyle.Font = Font.SystemFontOfSize(10);
-			col_dataMarker.LabelStyle.BackgroundColor = Color.White;
+			col_dataMarker.LabelStyle.BackgroundColor = Color.Transparent;
 			col_dataMarker.LabelStyle.TextColor = Color.Black;
 
 			ChartDataMarker spline_dataMarker = new ChartDataMarker() { ShowLabel = true };
 			spline_dataMarker.LabelStyle.Font = Font.SystemFontOfSize(10);
-			spline_dataMarker.LabelStyle.BackgroundColor = Color.White;
+			spline_dataMarker.LabelStyle.BackgroundColor = Color.Transparent;
 			spline_dataMarker.LabelStyle.TextColor = Color.Purple;
 
 			col_bars_ = new ColumnSeries () {
@@ -92,6 +92,10 @@ namespace PesqueraXamarinForms
 				DataMarkerPosition = Syncfusion.SfChart.XForms.DataMarkerPosition.Center,
 			};
 			col_bars_.DataMarker = col_dataMarker;
+
+			//Appearance
+			col_bars_.ColorModel.Palette = ChartColorPalette.Custom;
+			col_bars_.ColorModel.CustomBrushes = GlobalParameters.COLORS_GRAPHIC05;
 
 			col_splines_ = new SplineSeries(){
 				Label = "N° E/P",
@@ -115,28 +119,34 @@ namespace PesqueraXamarinForms
 			p_list_period_ = new Picker
 			{
 				Title = menu_labels_[2],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
+				WidthRequest = GlobalParameters.WIDTH_PICKER_PERIODO
 			};
 					
 			/// Picker Year
 			p_list_year_ = new Picker
 			{
 				Title = menu_labels_[0],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
 			};
 					
 			/// Picker zona
 			p_list_zone_ = new Picker
 			{
 				Title = menu_labels_[1],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
+				WidthRequest = GlobalParameters.WIDTH_PICKER_ZONE
 			};
 
 			/// Picker QUINCENA
 			p_list_quincena_ = new Picker
 			{
 				Title = menu_labels_[3],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
 			};
 			foreach (string quincenaName in GlobalParameters.LIST_QUINCENAS)
 			{
@@ -148,7 +158,8 @@ namespace PesqueraXamarinForms
 			p_list_mes_ = new Picker
 			{
 				Title = menu_labels_[4],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
 			};
 			foreach (string mesName in GlobalParameters.LIST_MESES)
 			{
@@ -236,7 +247,8 @@ namespace PesqueraXamarinForms
 						Children = {
 							new Label(){
 								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-								Text = menu_labels_[0]
+								Text = menu_labels_[0],
+								VerticalOptions = LayoutOptions.Center
 							},
 							p_list_year_,
 
@@ -248,14 +260,16 @@ namespace PesqueraXamarinForms
 								Children = {
 									new Label(){
 										FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-										Text = menu_labels_[1]
+										Text = menu_labels_[1],
+										VerticalOptions = LayoutOptions.Center
 									},
 									p_list_zone_
 								}
 							},
 							new Label(){
 								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-								Text = menu_labels_[2]
+								Text = menu_labels_[2],
+								VerticalOptions = LayoutOptions.Center
 							},
 							p_list_period_
 						}
@@ -268,17 +282,19 @@ namespace PesqueraXamarinForms
 						Children = {
 							new Label(){
 								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-								Text = menu_labels_[3]
+								Text = menu_labels_[3],
+								VerticalOptions = LayoutOptions.Center
 							},
 							p_list_mes_,
 							new Label(){
 								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-								Text = "  " + menu_labels_[4]
+								Text = " " + menu_labels_[4],
+								VerticalOptions = LayoutOptions.Center
 							},
 							p_list_quincena_,
 							new Label(){
 								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-								Text = "     "
+								Text = "    "
 							},
 							refrescar
 						}
@@ -369,8 +385,8 @@ namespace PesqueraXamarinForms
 			List< dtoGrafico05> list_g05 = await http_loader_.LoadGrafico05FromInternet (anoTempo, codigoZona, periodo, mes, quincena);
 			int dia_id = 1;
 			foreach (dtoGrafico05 g05_item in list_g05) {
-				g05_data_col.Add( new ChartDataPoint ( dia_id.ToString(), g05_item.tmDescarga ) );
-				g05_data_spline.Add (new ChartDataPoint (dia_id.ToString (), g05_item.nEP));
+				g05_data_col.Add( new ChartDataPoint ( dia_id.ToString(), (int)g05_item.tmDescarga ) );
+				g05_data_spline.Add (new ChartDataPoint (dia_id.ToString (), (int)g05_item.nEP));
 				dia_id ++;
 			}
 			col_bars_.ItemsSource = g05_data_col;

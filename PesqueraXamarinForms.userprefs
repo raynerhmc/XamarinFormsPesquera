@@ -1,14 +1,17 @@
 ﻿<Properties StartupItem="iOS/PesqueraXamarinForms.iOS.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6s.9.2" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PesqueraXamarinForms/GUI/LoginPage.xaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PesqueraXamarinForms/GlobalParameters.cs">
     <Files>
-      <File FileName="PesqueraXamarinForms/GUI/LoginPage.xaml.cs" Line="20" Column="4" />
-      <File FileName="PesqueraXamarinForms/PesqueraXamarinForms.cs" Line="13" Column="1" />
-      <File FileName="PesqueraXamarinForms/GUI/LoginPage.xaml" Line="23" Column="43" />
-      <File FileName="iOS/AppDelegate.cs" Line="32" Column="1" />
-      <File FileName="PesqueraXamarinForms/obj/Debug/LoginPage.xaml.g.cs" Line="26" Column="24" />
-      <File FileName="PesqueraXamarinForms/obj/Debug/MyPage.xaml.g.cs" Line="23" Column="24" />
-      <File FileName="iOS/Main.cs" Line="17" Column="1" />
+      <File FileName="PesqueraXamarinForms/GlobalParameters.cs" Line="7" Column="31" />
+      <File FileName="PesqueraXamarinForms/GUI/Gra01ResumenTemporadaPie.cs" Line="14" Column="39" />
+      <File FileName="PesqueraXamarinForms/GUI/Gra02PescaRegionColumn.cs" Line="127" Column="121" />
+      <File FileName="PesqueraXamarinForms/GUI/Gra03PescaPuertoColumn.cs" Line="142" Column="4" />
+      <File FileName="PesqueraXamarinForms/GUI/Gra04PescaPlantaBar.cs" Line="141" Column="4" />
+      <File FileName="PesqueraXamarinForms/GUI/Gra05PescaDiaColumnSpline.cs" Line="297" Column="20" />
+      <File FileName="PesqueraXamarinForms/GUI/Gra06QuincenaColumnSpline.cs" Line="121" Column="57" />
+      <File FileName="PesqueraXamarinForms/GUI/Gra07GruposMColumn.cs" Line="87" Column="4" />
+      <File FileName="PesqueraXamarinForms/GUI/Gra08GruposRangoBar.cs" Line="124" Column="4" />
+      <File FileName="PesqueraXamarinForms/GUI/LoginPage.xaml.cs" Line="35" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -134,24 +134,34 @@ namespace PesqueraXamarinForms
 		private async void GetChart()
 		{
 
-			SfChart chart = new SfChart();
+			SfChart chart = new SfChart(){ Legend = new ChartLegend(){
+					DockPosition = LegendPlacement.Bottom
+				} };
+			chart.Legend.LabelStyle.Font = Font.SystemFontOfSize(GlobalParameters.LEGEND_TEXT_SIZE_SERIES_, FontAttributes.None);
+
 			chart.PrimaryAxis = new CategoryAxis() { LabelPlacement = LabelPlacement.BetweenTicks };
 			chart.SecondaryAxis = new NumericalAxis(){ LabelRotationAngle = 0, MaximumLabels =5  };
 
 			ChartDataMarker dataMarker = new ChartDataMarker() { ShowLabel = true };
 			dataMarker.LabelStyle.Font = Font.SystemFontOfSize(11);
-			dataMarker.LabelStyle.BackgroundColor = Color.White;
+			dataMarker.LabelStyle.BackgroundColor = Color.Transparent;
 			dataMarker.LabelStyle.TextColor = Color.Black;
 			dataMarker.LabelStyle.LabelPosition = DataMarkerLabelPosition.Auto;
 			//dataMarker.LabelStyle.Angle = 90;
 			chart.ChartBehaviors.Add(new ChartZoomPanBehavior(){ EnablePanning = true, EnableZooming = true}) ;
 
-			chart.PrimaryAxis.LabelRotationAngle = -45;
+			chart.PrimaryAxis.LabelRotationAngle = 0;
 			chart.PrimaryAxis.LabelStyle.Font = Font.SystemFontOfSize(7);
+
 			row_bars_ = new BarSeries () {
+				Label = "Descarga TM por grupos segùn % de avance",
 				ItemsSource = GetEmptyData(),
 				//DataMarkerPosition = Syncfusion.SfChart.XForms.DataMarkerPosition.Center,
 			};
+
+			//Appearance
+			row_bars_.ColorModel.Palette = ChartColorPalette.Custom;
+			row_bars_.ColorModel.CustomBrushes = GlobalParameters.COLORS_GRAPHIC04;
 
 			row_bars_.DataMarker = dataMarker;
 			row_bars_.EnableDataPointSelection = true;
@@ -164,39 +174,47 @@ namespace PesqueraXamarinForms
 
 			////////////// Picker#
 			/// 
-			/// Picker Period
+			/// Picker Periodo
 			p_list_period_ = new Picker
 			{
 				Title = menu_labels_[2],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
+				WidthRequest = GlobalParameters.WIDTH_PICKER_PERIODO
 			};
 
 			/// Picker year
 			p_list_year_ = new Picker
 			{
 				Title = menu_labels_[0],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
 			};
 
 			/// Picker zona
 			p_list_zone_ = new Picker
 			{
 				Title = menu_labels_[1],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
+				WidthRequest = GlobalParameters.WIDTH_PICKER_ZONE
 			};
 					
 			/// Picker region
 			p_list_region_ = new Picker
 			{
 				Title = menu_labels_[3],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
+				WidthRequest = GlobalParameters.WIDTH_PICKER_REGION
 			};
 					
 			/// Picker puerto
 			p_list_puerto_ = new Picker
 			{
 				Title = menu_labels_[4],
-				VerticalOptions = LayoutOptions.StartAndExpand
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				Scale = GlobalParameters.SCALE_PICKER,
 			};
 
 
@@ -284,7 +302,8 @@ namespace PesqueraXamarinForms
 						Children = {
 							new Label(){
 								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-								Text = menu_labels_[0]
+								Text = menu_labels_[0],
+								VerticalOptions = LayoutOptions.Center
 							},
 							p_list_year_,
 
@@ -296,14 +315,16 @@ namespace PesqueraXamarinForms
 								Children = {
 									new Label(){
 										FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-										Text = menu_labels_[1]
+										Text = menu_labels_[1],
+										VerticalOptions = LayoutOptions.Center
 									},
 									p_list_zone_
 								}
 							},
 							new Label(){
 								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-								Text = menu_labels_[2]
+								Text = menu_labels_[2],
+								VerticalOptions = LayoutOptions.Center
 							},
 							p_list_period_
 						}
@@ -316,12 +337,14 @@ namespace PesqueraXamarinForms
 						Children = {
 							new Label(){
 								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-								Text = menu_labels_[3]
+								Text = menu_labels_[3],
+								VerticalOptions = LayoutOptions.Center
 							},
 							p_list_region_,
 							new Label(){
 								FontSize = GlobalParameters.LABEL_TEXT_SIZE_15_,
-								Text = menu_labels_[4]
+								Text = menu_labels_[4],
+								VerticalOptions = LayoutOptions.Center
 							},
 							p_list_puerto_
 						}
@@ -457,7 +480,7 @@ namespace PesqueraXamarinForms
 					string codigoPuerto = g03List_ [p_list_puerto_.SelectedIndex].codigoPuerto;
 					List< dtoGrafico04 > list_g04 = await http_loader_.LoadGrafico04FromInternet (anoTempo, codigoZona, periodo, codigoRegion, codigoPuerto);
 					foreach (dtoGrafico04 g04_item in list_g04) {
-						g04_data.Add ( new ChartDataPoint ( g04_item.descripcionPlanta, g04_item.tmDescarRegion ) );
+						g04_data.Add ( new ChartDataPoint ( g04_item.descripcionPlanta, (int)g04_item.tmDescarRegion ) );
 					}
 					row_bars_.ItemsSource = g04_data;
 				}

@@ -94,13 +94,13 @@
       <HintPath>..\packages\Xamarin.Forms.1.4.3.6376\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfChart.iOS">
-      <HintPath>..\..\..\..\..\..\Downloads\syncfusionessentialxamarin\lib\ios-unified\Syncfusion.SfChart.iOS.dll</HintPath>
+      <HintPath>..\packages\syncfusion\ios-unified\Syncfusion.SfChart.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfChart.XForms">
-      <HintPath>..\..\..\..\..\..\Downloads\syncfusionessentialxamarin\lib\ios-unified\Syncfusion.SfChart.XForms.dll</HintPath>
+      <HintPath>..\packages\syncfusion\ios\Syncfusion.SfChart.XForms.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfChart.XForms.iOS">
-      <HintPath>..\..\..\..\..\..\Downloads\syncfusionessentialxamarin\lib\ios-unified\Syncfusion.SfChart.XForms.iOS.dll</HintPath>
+      <HintPath>..\packages\syncfusion\ios-unified\Syncfusion.SfChart.XForms.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
